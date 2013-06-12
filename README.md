@@ -1,2 +1,2 @@
-europlop2013
+PLoP13 Architectuur Patterns
 ============
