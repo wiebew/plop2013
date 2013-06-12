@@ -1,0 +1,32 @@
+\newpage
+\section*{SINGLE FILE LOCATION}
+
+%The application is physically distributed over a couple of different files. These could be configuration %files, data files, or multiple binaries. 
+The application files, e.g. configuration files, data files, or  binaries, are stored in predictable and consistent location.
+
+\begin{center}
+\ding{118} \ding{118} \ding{118}
+\end{center}
+
+\textbf{If the application files are spread over different folders or hidden in system-folders of the OS, it is hard to keep track of the different locations and to retrieve the correct files. It is hard to achieve a sufficient quality of versioning when the files that should be under version control are spread over the whole disk.}\\
+
+\textit{Distributed Applications.} Many applications consist of different subsystems, which often require  subsystem-specific administration tasks. These subsystems are in many cases developed by different teams, resulting in separated groups of similar artifacts for each subsystem. This makes the organization of the development process more easy, as the teams can work mostly independently.\\
+
+\textit{Hard-coded Locations.} Many developers tend to choose a good place for configuration files and make this path relative to the location of the application installation. If this path is hard-coded it cannot be changed other than by building and deploying a new version of the application.
+
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+\textbf{Therefore: Put all related files in one (hierarchical) location. Make the path of this location configurable.}\\
+
+Files that logically belong together and should be at the same location are: the binaries of a system, the configuration files and the data files. In the case of log files one should first consider to {\sc Use Built-in System Logging}.
+
+%The physical view of software architecture as described by Philippe Kruchten \cite{Kruchten1995}... todo: describe that this view often sees subsystems or applications as a whole. It does not offer the flexibility of freely choosing the location or, even better, show that this does not have to be a fixed location but could be configurable.
+ 
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+\textit{Rationale.}\\
+Without using this pattern the files of applications will be dispersed over several distinct locations which makes it hard to maintain the application. When a file of a module isn't used anymore it will easily remain in disuse and get overlooked which causes pollution of your hard disk.
