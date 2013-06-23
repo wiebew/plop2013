@@ -1,0 +1,42 @@
+\newpage
+\section*{MULTI-TENANT APPLICATION}
+
+%Het Multi-tenancy patroon is een patroon wat op meerdere niveaus toegpast kan worden: data, software, hardware. In het kader van dit artikel zal alleen de softwarekant genoemd worden, omdat deze van invloed is op het resourceverbruik van servers binnen een rekencentrum en om het resourceverbruik omlaag te krijgen.
+% Er is best wel wat literatuur over multi-tenancy te vinden zodoende heb ik nog niet alles kunnen lezen. In het onderzoekssemester (Semester 7 - blok 1 & 2) ga ik een onderzoeksgroep bij de gemeente Utrecht begeleiden.
+
+A multi-tenant application is a shared solution (i.e. HRM) used by different tenants ((client) organizations, departments). It is a single application with scalable resources to meet the performance demands of tenants. 
+
+\begin{center}
+\ding{118} \ding{118} \ding{118}
+\end{center}
+
+\textbf{Many companies are looking for a scalable architecture to deal with burst loads or for an approach for sharing. Virtualizing your hardware seemed one solution but isn't realy scalable in both directions (upwards and downwards)}\\
+
+%\textit{Elastic computing.} ...
+
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+\textbf{Therefore: Make use of multi-tenant applications to reduce hardware investments or to outsource one's software and hardware to a SaaS/PaaS-provider.}\\
+
+This solution has several advantages: Combining virtualization, elasticity and multi-tenancy results in optimized usage of data center
+resources as it means CPU, memory and network resources are maximally deployed.
+
+%Relation with possible {\sc Virtualization} pattern and {\sc Elasticity}?
+
+When no multi-tenancy is used a lot of organizations make use of virtualization and/or elasticity.
+
+%TODO: describe an alternative solution if no multi-tenancy is available (RB: dit is juist het probleem wat hiermee opgelost dient te worden. Heel veel organisaties gebruiken dan alleen virtualisatie of elasticiteit in bv. een vorm als Amazon EC2 (Elastic Compute Cloud)) waarmee echte schaalbaarheid lastig te verkrijgen is. 
+
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+Besides above mentioned advantages multitenant applications are typically required to provide a high degree of customization to support each target organization's needs. Customization typically includes the following aspects:
+\begin{itemize}
+  \item Branding: allowing each organization to customize the look-and-feel of the application to match their corporate branding (often referred to as a distinct "skin").
+	\item Workflow: accommodating differences in workflow to be used by a wide range of potential customers.
+	\item Extensions to the data model: supporting an extensible data model to give customers the ability to customize the data elements managed by the application to meet their specific needs.
+	\item Access control: letting each client organization independently customize access rights and restrictions for each user.\footnote{\url{http://en.wikipedia.org/wiki/Multitenancy}}
+\end{itemize}
