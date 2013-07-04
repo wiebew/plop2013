@@ -30,19 +30,26 @@ Offering an API for the administrator provides much more flexibility to the syst
 Tools for automation can make use of the administration functionality if they can connect to the provided API. The right API helps to automate tasks that are part of a new employee account creation process. \cite{Limoncelli2011a}.
 
 % negative consequences
-There might be some security issues when exposing administrative features. Making use of a {\sc Proxy} \cite{Gamma95} can help here. The {\sc Proxy} can include an authentication mechanism and block all unauthorized access. Make new diagram here including the proxy and authentication (relate to applicable authentication patterns here).
+There might be some security issues when exposing administrative features. Making use of a {\sc Proxy} \cite{Gamma95} can help here. The {\sc Proxy} can include an authentication mechanism and block all unauthorized access attempts. Make new diagram here including the proxy and authentication (relate to applicable authentication patterns here).
 
 If the system evolves, then also the API is likely to change which might require adaptations the system developers are not aware of. TODO: The question is how to minimize the effect of system changes on the administrative API?
 
-Providing an API might require a good documentation, whereas an administrative GUI can be more intuitive and self-explaining. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in an apart window section. This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling including good error messages. 
+Providing an API might require a good documentation, whereas an administrative GUI can be more intuitive and self-explaining. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in an apart window section. This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling including good error messages. \\
 
 %\textit{Implementation details, referring back to negative consequences}
 
 TODO: how to implement? Also refer to {\sc Service Layer} in Fowler book \cite{Fowler:2002:PEA:579257}. And {\sc Facade} \cite{Gamma95}.  
 
-TODO: what are the components and roles involved in the implementation of these patterns? Also include a diagram here.
+TODO: what are the components and roles involved in the implementation of these patterns? 
 
-TODO: say something about the way the API should/could be provided technically. Relate to force admin os vs system os.
+\begin{figure}[h]
+\centering
+\includegraphics{patterns/provideAPIDiagram-01.pdf}
+\caption{Solution structure}
+\label{fig:provideAPIDiagram-01}
+\end{figure}
+
+TODO: say something about the way the API should/could be provided technically. Relate to force admin os vs system os.\\
 
 \textit{One possibility of implementing this administrative API are the Java Management Extensions\footnote{\url{http://www.oracle.com/technetwork/java/javase/tech/javamanagement-140525.html}} (JMX). TODO: more }
 
