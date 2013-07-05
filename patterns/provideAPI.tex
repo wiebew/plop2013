@@ -19,44 +19,60 @@ The system to be built includes the possibilities of being configurable, whereby
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
-\textbf{Therefore: Provide an API for all required administration functionality. Make this API available, easily accessible and well documented, so that admins can automate administrative tasks and integrate it easily in the administration processes.}\\
+\textbf{Therefore: Provide an API for all required administration functionality. Make this API externally available, easily accessible and well documented, so that admins can automate administrative tasks and integrate it easily in the administration processes.}\\
 
-\textit{Solution in more detail.}
+%\textit{Solution in more detail.}
 
-\textit{Consequences - first positive and then negative, relate these also to the forces}
+%\textit{Consequences - first positive and then negative, relate these also to the forces}
 
-Offering an API for the administrator provides much more flexibility to the system administrators for administering the systems in the way they think fits best. It gives them enough freedom to integrate the administration in existing processes.
+Offering an API for the administrator provides much more flexibility to the system administrators for administering the systems in the way they think fits best. It gives them enough freedom to integrate the administration in existing processes. In order to be able to offer this high degree of freedom regarding the usage of the API, the system developers have to carefully design it and to offer the administration functionality in appropriate abstraction levels. This means that the API should be fine-grained enough.
 
 Tools for automation can make use of the administration functionality if they can connect to the provided API. The right API helps to automate tasks that are part of a new employee account creation process. \cite{Limoncelli2011a}.
 
 % negative consequences
-There might be some security issues when exposing administrative features. Making use of a {\sc Proxy} \cite{Gamma95} can help here. The {\sc Proxy} can include an authentication mechanism and block all unauthorized access attempts. Make new diagram here including the proxy and authentication (relate to applicable authentication patterns here).
+There might be some security issues when exposing administrative features. Making use of a {\sc Proxy} \cite{Buschmann1996} can help here. The {\sc Proxy} can include an authentication mechanism and block all unauthorized access attempts, this will discussed in more detail in the implementation section.
 
-If the system evolves, then also the API is likely to change which might require adaptations the system developers are not aware of. TODO: The question is how to minimize the effect of system changes on the administrative API?
+If the system evolves, then also the API is likely to change which might require adaptations the system developers are not aware of. This is a general problem in interface- and component-based development and needs to be addressed in the design of the API. 
 
 Providing an API might require a good documentation, whereas an administrative GUI can be more intuitive and self-explaining. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in an apart window section. This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling including good error messages. \\
 
 %\textit{Implementation details, referring back to negative consequences}
 
-TODO: how to implement? Also refer to {\sc Service Layer} in Fowler book \cite{Fowler:2002:PEA:579257}. And {\sc Facade} \cite{Gamma95}.  
-
-TODO: what are the components and roles involved in the implementation of these patterns? 
+In the most simple cases the pattern is a specific variant of a {\sc Service Layer} \cite{Fowler:2002:PEA:579257}. In this case it does not contain any logic, but simply forwards all requests to already existing subsystems that offer the administration functionality. This is shown in Figure \ref{fig:provideAPIDiagram-01}.  
 
 \begin{figure}[h]
 \centering
 \includegraphics{patterns/provideAPIDiagram-01.pdf}
-\caption{Solution structure}
+\caption{Main solution structure of PROVIDE AN ADMINISTRATION API}
 \label{fig:provideAPIDiagram-01}
 \end{figure}
 
-TODO: say something about the way the API should/could be provided technically. Relate to force admin os vs system os.\\
+If the administration API should not be publicly available due to security reasons, a {\sc Proxy} \cite{Buschmann1996} could be used to adequately address this issue. Figure \ref{fig:provideAPIDiagram-02} shows the main design. The protection proxy needs to include some mechanism for authentication and authorization of the requester(?). These can be implemented making use of e.g. patterns xxx (TODO).
 
-\textit{One possibility of implementing this administrative API are the Java Management Extensions\footnote{\url{http://www.oracle.com/technetwork/java/javase/tech/javamanagement-140525.html}} (JMX). TODO: more }
+\begin{figure}[h]
+\centering
+\includegraphics{patterns/provideAPIDiagram-02.pdf}
+\caption{An administration API including a protection proxy for security reasons}
+\label{fig:provideAPIDiagram-02}
+\end{figure}
+
+In certain cases the implementation language of the system and that of the administration API are different. Main reason for this could be that the administration API is required to be provided in a specific scripting language that suits the administrators' tasks best. In that case the administration API subsystem also becomes an {\sc Adapter} \cite{Gamma95} between these two implementation languages.
+
+The problem of different platforms used for the system and in the administration environment can be minimized by making use of cross-platform scripting languages like Python, Ruby or TCL. This is also a certain advantage above graphical administration interfaces, as it removes the platform-specific issues caused by the GUI technologies. In combination with such a cross-platform scripting language this pattern shows its real strength as one can uniformly approach the administration API on any given platform.
+
+Ideally, any changes in the system itself do not lead to changes in the administration API. However, if also functionality of the system regarding its configuration is changing, then also the API likely needs to be changed. The tools of the administrators are dependent on the API both syntactically and semantically in varying degrees. Unfortunately are both dependency types interrelated: the less syntactic the dependency is, the higher it is semantically and vice versa. One criterion that can be used for determining if the API should decrease the syntactic or the semantic dependencies is how easy it is to adapt the connection to the API on either syntactic and semantic level. TODO: more
+
+TODO: some stuff on documentation of the API.
+
+
+
+
+\textit{One possibility of implementing this administrative API in the Java programming language are Java Management Extensions\footnote{\url{http://www.oracle.com/technetwork/java/javase/tech/javamanagement-140525.html}} (JMX). TODO: more }
 
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
-\textit{Rationale.}\\
-Using this pattern will make the life of a system administrator more pleasant, especially in cross-platform situations, as it removes the platform-specific issues caused by a graphical administration interface. In combination with a cross-platform scripting language (e.g. Python, Ruby, TCL) this pattern shows its real strength as one can uniformly approach the administration API on any given platform.
+\textit{Rationale?}\\
+%Using this pattern will make the life of a system administrator more pleasant, especially in cross-platform situations, as it removes the platform-specific issues caused by a graphical administration interface. In combination with a cross-platform scripting language (e.g. Python, Ruby, TCL) this pattern shows its real strength as one can uniformly approach the administration API on any given platform.
 
