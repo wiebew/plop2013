@@ -1,5 +1,12 @@
 \section{Introduction} 
-In the article \textit{A plea from sysadmins to software vendors: 10 Do's and Don'ts} by Thomas Limoncelli, published in the Communications of the ACM magazine \cite{Limoncelli2011a}, system administrators collected a basic list of what software vendors should do and not do in order to make the life of the system administrators more easy. It seems that in certain points there is a high agreement between administrators what best practices should be. However, these practices often belong to another discipline, namely software architecture. 
+
+In the article \textit{A plea from sysadmins to software vendors: 10 Do's and Don'ts} by Thomas Limoncelli \cite{Limoncelli2011a}, system administrators collected a basic list of do's and dont's for software vendors in order to make the life of the system administrators more easy. 
+
+For a large number of points in this list there is a high agreement between administrators on what the best practices should be. However as system adminstrators are on the "receiving" end for a new or modified application, it is necessary to influence other parties who have a key position in the creation or the changing of an application. 
+
+A role that fits this key position is the software architect. Among other concerns the software architect is responsible for the software architecture. The software architecture is the main design document for the software of an application. The design decisions taken in that document have a profound impact on the workload of the system administrators. 
+
+This paper aims at influencing the software architects and the software architecture by providing patterns for software architecture that are endorsed by system administrators.
 
 The focus of Software Architecture is often on realizing quality attributes, such as those described in ISO 25010: Functional suitability, Performance efficiency, Compatibility, Usability, Reliability, Security, Maintainability and Portability. Many patterns have been described, e.g. in the POSA book series \cite{Buschmann1996}, and their general applicability for realizing the qualities has been discussed \cite{Harrison2011}. There are also publications that focus on patterns for specific quality aspects, like patterns for fault tolerant systems \cite{Hanmer2007} or security patterns \cite{Schumacher2005}. But there is one quality attribute where not much attention has been paid to: Portability and its sub-qualities Adaptability, Installability, and Replaceability. A number of concerns from system administrators are covered by the aforementioned attributes, but the mapping of the concerns on the attributes is not intuitive.
 
