@@ -1,0 +1,29 @@
+commit c9b7905e8142545b15b83be2e3756294d7785893
+Author: rbijvank <roland.bijvank@hu.nl>
+Date:   Thu Jul 25 23:01:54 2013 +0200
+
+    Juiste aanvulling?
+
+diff --git a/patterns/provideAPI.tex b/patterns/provideAPI.tex
+index b2980dc..a46b296 100644
+--- a/patterns/provideAPI.tex
++++ b/patterns/provideAPI.tex
+@@ -34,7 +34,7 @@ There might be some security issues when exposing administrative features. Makin
+ 
+ If the system evolves, then also the API is likely to change which might require adaptations the system developers are not aware of. This is a general problem in interface- and component-based development and needs to be addressed in the design of the API too. 
+ 
+-Providing an API might require a good documentation, whereas an administrative GUI can be more intuitive and self-explaining. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in an apart window section. This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with good error messages. \\
++Providing an API might require a good documentation, whereas an administrative GUI can be more intuitive and self-explaining. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in an apart window section. This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with clear error messages. \\
+ 
+ %\textit{Implementation details, referring back to negative consequences}
+ 
+@@ -47,7 +47,8 @@ In the most simple cases the pattern is a specific variant of a {\sc Service Lay
+ \label{fig:provideAPIDiagram-01}
+ \end{figure}
+ 
+-If the administration API should not be publicly available due to security reasons, a {\sc Proxy} \cite{Buschmann1996} could be used to adequately address this issue. Figure \ref{fig:provideAPIDiagram-02} shows the main design. The protection proxy needs to include some mechanism for authentication and authorization of the requester. These can be implemented making use of e.g. patterns xxx (TODO).
++If the administration API should not be publicly available due to security reasons, a {\sc Proxy} \cite{Buschmann1996} could be used to adequately address this issue. Figure \ref{fig:provideAPIDiagram-02} shows the main design. The protection proxy needs to include some mechanism for authentication and authorization of the requester. These can be implemented making use of e.g. patterns {\sc Adapter} \cite{Gamma95} because this pattern can influence the visibility of the administration API with respect to authentication and authorization of the requester.
++%(TODO) @Christian: is dit wat je voor ogen hebt?.
+ 
+ \begin{figure}[h]
+ \centering
