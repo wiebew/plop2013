@@ -1,20 +1,18 @@
 \newpage
-\section*{PROVIDE AN ADMINISTRATION API}
-
-%The system has to offer the possibility of different administration possibilities, as e.g. a regular %performance check, creation of a new user or a re-start in the case of problems, but also the signalling of a %critical condition. 
-%The system has to provide an API (application programming interface) that allows the system administrator to automate system administration tasks. Examples of such tasks are: a regular performance check, creation of a new user or a re-start in the case of problems, but also the signaling of a critical condition.  
-The system to be built includes the possibilities of being configurable, whereby configuration files alone are not sufficient. These configurations are often administered by special employees, like application administrators, and not the core-users of the system itself.  
-
+\section*{ADMINISTRATION API}
+Every software system in a professional environment needs to be maintained by a system administrator. Most applications provide an administrative interface for system administrators to perform these tasks.
 \begin{center}
 \ding{118} \ding{118} \ding{118}
 \end{center}
+\textbf{If the administrative interface is a GUI, many of the standard administration tasks can not be automated. Repetitive tasks have to be manually completed again and again, which leads to a high frustration of the administrators. It also can be hard to get remote access to such a GUI.}\\
 
-\textbf{If the administrative interface is a GUI, many of the standard administration tasks can not be automated. Repetitive tasks have to be completed again and again, which leads to a high frustration of the administrators. It also can be hard to get remote access to such a GUI.}\\
+\textit{Unexpected usage.} System administrators have their own ways of organizing their administration tasks. They strive to automate many parts, often in unexpected ways, and a GUI is minimizing the possibilities of doing so.\\
 
-\textit{Unexpected usage.} System administrators have their own ways of organizing their administration tasks. The strive to automate many parts, often in unexpected ways, and a GUI is minimizing the possibilities of doing so.\\
+\textit{Platform diversity.} The operating systems which administrators are using for their administration tasks often differ from the OS the application to be administered is running on. The systems need to provide administrative interfaces that are platform independent.\\
 
-\textit{Admin OS vs. System OS.} The operating systems which admins are using for their administration tasks often differ from the OS the application to be administered is running on. Providing an GUI as administrative interface often means that this GUI is only executable on certain OS's, which certainly restricts system administrators in an unnecessary way.
+\textit{Rise of the Cloud} The lower cost to deploy systems in the Cloud leads to more systems being deployed and subsequently to a higher workload for the system administrators if they do not adopt more efficient means for system administration. The increase of usage of a resource when technology improves the resources efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \cite{Polimeni2008}. It seems quite likely the same will apply to the number of systems deployed in the Cloud\\
 
+\textit{Increasing rate of upgrades and deploys} The Agile and DevOps development lifecycles where software upgrades are deployed on a weekly or even a  daily basis, as opposed to the quarterly and jearly deploy cycles of more traditional software development methods, imposes tight control, predictability and efficiency on the deploy, installation and configuration of software. \cite{Humble2010}
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
 \end{center}
@@ -25,16 +23,23 @@ The system to be built includes the possibilities of being configurable, whereby
 
 %\textit{Consequences - first positive and then negative, relate these also to the forces}
 
-Offering an API for the administrator provides much more flexibility to the system administrators for administering the systems in the way they think fits best. It gives them enough freedom to integrate the administration in existing processes. In order to be able to offer this high degree of freedom regarding the usage of the API, the system developers have to carefully design it and to offer the administration functionality in appropriate abstraction levels. This means that the API should be fine-grained enough.
+%The system has to offer the possibility of different administration possibilities, as e.g. a regular %performance check, creation of a new user or a re-start in the case of problems, but also the signalling of a %critical condition. 
+%The system has to provide an API (application programming interface) that allows the system administrator to automate system administration tasks. Examples of such tasks are: a regular performance check, creation of a new user or a re-start in the case of problems, but also the signaling of a critical condition.  
+
+Offering an administration API provides much more flexibility for the system administrators to administer the systems in the way they think fits best. It gives them enough freedom to integrate the administration in existing processes. In order to be able to offer this high degree of freedom regarding the usage of the API, the system developers have to carefully design it and to offer the administration functionality in appropriate abstraction levels. This means that the API should be fine-grained enough.
+
+The tasks of the system administrators are quite wide e.g.: installation, maintenance, scheduling repair, performance monitoring, backup \& recovery, defining and maintaining usage and security policies etc. For most of these tasks an API can increase the efficiency and quality of the administration processes. 
+
+Automating administrative tasks reduces the number of errors that normally occur in manual execution such as the omission of steps or typing errors in commands. In a script such errors will also occur while programming the script, but once discovered can be fixed for subsequent usage of the script.
 
 Tools for automation can make use of the administration functionality if they can connect to the provided API. For example, the right API helps to automate tasks that are part of a new employee account creation process. \cite{Limoncelli2011a}.
 
 % negative consequences
-There might be some security issues when exposing administrative features. Making use of a {\sc Proxy} \cite{Buschmann1996} can help here. The {\sc Proxy} can include an authentication mechanism and block all unauthorized access attempts, this will be discussed in more detail in the implementation description below.
+To securely expose administrative features utilize a {\sc Proxy} \cite{Buschmann1996}. The {\sc Proxy} can include authentication and authorization mechanism and block all unauthorized access attempts, this will be discussed in more detail in the implementation description below.
 
 If the system evolves, then also the API is likely to change which might require adaptations the system developers are not aware of. This is a general problem in interface- and component-based development and needs to be addressed in the design of the API too. 
 
-Providing an API might require a good documentation, whereas an administrative GUI can be more intuitive and self-explaining. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in an apart window section. This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with clear error messages. \\
+Providing an API might require more elaborate documentation compared to a more intuitive and self-explaining administrative GUI. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in an apart window section. This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with clear error messages. \\
 
 %\textit{Implementation details, referring back to negative consequences}
 

@@ -61,7 +61,7 @@ number of tenants (hardware AND software).
 
 Figure \ref{fig:Multi-tenantApplicationDiagram-01} shows the inherent relation of the SPOSAD style to the n-tier architectural style, as it features a client, application, and database tier. The SPOSAD style is an extension of the multi-tier architectural style. Clients using web browsers or rich client applications interact with the application tier, which in turn accesses the database tier. The polymorphic application threads are the heart of the application tier. A load balancer directs user requests to them. The meta-data manager ensures that tenant-specific customizations are included in the application. The data tier differs from traditional n-tier architecture in the arrangement of the data, which is stored in a multi-tenant database that allows maximal resource sharing.
 
-Requirements for a multi-tenant architecture are \cite{conf/se/Koziolek10}:
+Requirements for a multi-tenant architecture are \cite{Koziolek10}:
 \begin{itemize}
 	\item Resource Sharing: hardware and software resources, such
 as hardware infrastructure, virtual machines, operating systems, databases, and code.
