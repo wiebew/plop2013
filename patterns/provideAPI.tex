@@ -12,7 +12,7 @@ Every software system in a professional environment needs to be maintained by a 
 
 \textit{Rise of the Cloud} The lower cost to deploy systems in the Cloud leads to more systems being deployed and subsequently to a higher workload for the system administrators if they do not adopt more efficient means for system administration. The increase of usage of a resource when technology improves the resources efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \cite{Polimeni2008}. It seems quite likely the same will apply to the number of systems deployed in the Cloud\\
 
-\textit{Increasing rate of upgrades and deploys} The Agile and DevOps development lifecycles where software upgrades are deployed on a weekly or even a  daily basis, as opposed to the quarterly and jearly deploy cycles of more traditional software development methods, imposes tight control, predictability and efficiency on the deploy, installation and configuration of software. \cite{Humble2010}
+\textit{Increasing rate of upgrades and deploys} The Agile and DevOps development lifecycles where software upgrades are deployed on a weekly or even a  daily basis, as opposed to the quarterly and yearly deploy cycles of more traditional software development methods, imposes tight control, predictability and efficiency on the deploy, installation and configuration of software. \cite{Humble2010}
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
 \end{center}
@@ -52,7 +52,7 @@ In the most simple cases the pattern is a specific variant of a {\sc Service Lay
 \label{fig:provideAPIDiagram-01}
 \end{figure}
 
-If the administration API should not be publicly available due to security reasons, a {\sc Proxy} \cite{Buschmann1996} could be used to adequately address this issue. Figure \ref{fig:provideAPIDiagram-02} shows the main design. The protection proxy needs to include some mechanism for authentication and authorization of the requester. These can be implemented making use of e.g. patterns {\sc Adapter} \cite{Gamma95} because this pattern can influence the visibility of the administration API with respect to authentication and authorization of the requester.
+If the administration API should not be publicly available due to security reasons, a {\sc Proxy} \cite{Buschmann1996} could be used to adequately address this issue. Figure \ref{fig:provideAPIDiagram-02} shows the main design. The protection proxy needs to include some mechanism for authentication and authorization of the requester. These can be implemented making use of e.g. a pattern like {\sc Adapter} \cite{Gamma95} because this pattern can influence the visibility of the administration API with respect to authentication and authorization of the requester.
 %(TODO) @Christian: is dit wat je voor ogen hebt?.
 
 \begin{figure}[h]
