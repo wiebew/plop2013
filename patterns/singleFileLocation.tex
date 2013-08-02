@@ -6,12 +6,12 @@ Files are an old and established mechanism used by applications to store and ret
 \ding{118} \ding{118} \ding{118}
 \end{center}
 
-\textbf{Having such an extensive use of files can cause system administrators to have difficulty in finding the files necessary for their tasks during the life cycle of an application. Especially so if the files are dispersed over different folders or hidden in system-folders of the Operating System. System administrators also want to be able to perform version control on the files, having files files spread  over the whole disk practically negates to ability to perform versioning and baselining of the configuration of an application.}\\
+\textbf{Having such an extensive use of files can cause system administrators to have difficulty in finding the files necessary for their tasks during the life cycle of an application. Especially so if the files are dispersed over different folders or hidden in system-folders of the Operating System. System administrators also want to be able to perform version control on the files, having files spread over the whole disk practically negates to ability to perform versioning and baselining of the configuration of an application.}\\
 
 \textit{Special cases that cause much aggravation:}
 \begin{itemize}
 \item Distributed Applications.\\
-Many applications consist of different subsystems, which often require  subsystem-specific administration tasks. These subsystems are in many cases developed by different teams, resulting in dispersed groups of similar artifacts for each subsystem. This situation is well suited for developers as they can work in parallel. During deploy or system administration activities 
+Many applications consist of different subsystems, which often require  subsystem-specific administration tasks. These subsystems are in many cases developed by different teams, resulting in dispersed groups of similar artifacts for each subsystem. This situation is well suited for developers as they can work in parallel. During deploy or system administration activities.
 \item Hard-coded Locations.\\
 This is the case when the developers put the location of the configuration files in source code and provide no parameters or interface to influence this location. This means the path can only be changed by building and deploying a new version of the application. Running multiple instances of a program on a machine with different parameters is effectively blocked by this approach. Additionally it can pose security risks if the file location is in a privileged location such as \verb|C:\Program Files| for Windows based systems.
 \item Non Human Readable Configuration Files.\\
