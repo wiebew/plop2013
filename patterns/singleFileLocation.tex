@@ -1,14 +1,14 @@
 \newpage
 \section*{SINGLE FILE LOCATION}
 % \parskip=0.3em
-Files are an old and established mechanism used by applications to store and retrieve configuration, libraries, state, data etc. Most applications use files in their own unique manner and store files in various locations.
+Files are an old and established mechanism used by applications to store and retrieve configuration, libraries, state, data etc. Most applications use files in their own unique manner and store files in various locations. This may lead to having files that are dispersed over different folders or hidden in system-folders of the Operating System. System administrators  want to be able to perform version control on the files.
 \begin{center}
 \ding{118} \ding{118} \ding{118}
 \end{center}
 
-\textbf{Having such an extensive use of files can cause system administrators to have difficulty in finding the files necessary for their tasks during the life cycle of an application. Especially so if the files are dispersed over different folders or hidden in system-folders of the Operating System. System administrators also want to be able to perform version control on the files, having files spread over the whole disk practically negates to ability to perform versioning and baselining of the configuration of an application.}\\
+\textbf{Having dispersed files causes system administrators to have difficulty in finding the files necessary for their tasks during the life cycle of an application.}\\
 
-\textit{Special cases that cause much aggravation:}
+%forces
 \begin{itemize}
 \item Distributed Applications.\\
 Many applications consist of different subsystems, which often require  subsystem-specific administration tasks. These subsystems are in many cases developed by different teams, resulting in dispersed groups of similar artifacts for each subsystem. This situation is well suited for developers as they can work in parallel. During deploy or system administration activities.
@@ -24,16 +24,27 @@ When an application provides a Graphical User Interface for configuring the appl
 
 \textbf{Therefore: Put all related files in one (hierarchical) location. Make the path of this location configurable.}\\
 
+Analyze the files and folders of the application, group the files that logically belong together and should be at the same location e.g.: the binaries of a system, the configuration files and the data files. In the case of log files one should first consider to {\sc Use Built-in System Logging}.
+
+Ideally it should be a structure that is re-used across applications that are installed on the same the server.This provides consistency for the system administrators.
+
+For reading the contents of configuration files PROPERTY LOADER and related patterns \cite{Wellhausen2010} can be used. 
+
 \begin{figure}[h]
 \centering
 \includegraphics{patterns/singleFileLocationDiagram-01.pdf}
-\caption{Basic example}
+\caption{The hierarchical file structure}
 \label{fig:singleFileLocationDiagram-01}
 \end{figure}
 
-Files that logically belong together and should be at the same location are: the binaries of a system, the configuration files and the data files. In the case of log files one should first consider to {\sc Use Built-in System Logging}.
+The applications that do file access should not use the native File IO Libraries but should use a FACADE for accessing files. This facade provides the basic file IO functionality and prohibits absolute path access. The facade is using a configurable absolute path that is the root of all file access. The relative paths branch from that root path.  This is best enforced in combination with a build server that checks which libraries are used from source code. The build should break when native File IO Libraries are used instead of the facade.
 
-%The physical view of software architecture as described by Philippe Kruchten \cite{Kruchten1995}... todo: describe that this view often sees subsystems or applications as a whole. It does not offer the flexibility of freely choosing the location or, even better, show that this does not have to be a fixed location but could be configurable.
+\begin{figure}[h!]
+\centering
+\includegraphics{patterns/singleFileLocationDiagram-02.pdf}
+\caption{Main solution structure for file access using SINGLE FILE LOCATION}
+\label{fig:singleFileLocationDiagram-02}
+\end{figure}
  
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
@@ -42,9 +53,11 @@ Files that logically belong together and should be at the same location are: the
 \textit{Rationale.}\\
 Without using this pattern the files of applications will be dispersed over several distinct locations which makes it hard to maintain the application. When a file of a module isn't used anymore it will easily remain in disuse and get overlooked which causes pollution of your hard disk.
 
-\begin{figure}[h]
-\centering
-%\includegraphics{patterns/singleFileLocationDiagram-02.pdf}
-\caption{Another example}
-\label{fig:singleFileLocationDiagram-02}
-\end{figure}
+If the folder structures are standardized across a development group, developers find it easier to navigate across an application and find the right files and folders.
+
+Using SINGLE FILE LOCATION is also more secure as this blocks access to vulnerable parts of the operating system as the implemented facade blocks access outside the root location. It is somewhat similar to a jailshell that prohibits users from wandering outside their home directories.
+
+A nice example of the structure of SINGLE FILE LOCATION is for instance found in the way ruby of rails applications are structured. Every project starts with a pre-defined folder and file structure. 
+
+
+
