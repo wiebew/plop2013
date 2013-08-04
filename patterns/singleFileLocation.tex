@@ -13,9 +13,11 @@ Files are an old and established mechanism used by applications to store and ret
 \item Distributed Applications.\\
 Many applications consist of different subsystems, which often require  subsystem-specific administration tasks. These subsystems are in many cases developed by different teams, resulting in dispersed groups of similar artifacts for each subsystem. This situation is well suited for developers as they can work in parallel. During deploy or system administration activities.
 \item Hard-coded Locations.\\
-This is the case when the developers put the location of the configuration files in source code and provide no parameters or interface to influence this location. This means the path can only be changed by building and deploying a new version of the application. Running multiple instances of a program on a machine with different parameters is effectively blocked by this approach. Additionally it can pose security risks if the file location is in a privileged location such as \verb|C:\Program Files| for Windows based systems.
-\item Non Human Readable Configuration Files.\\
-When an application provides a Graphical User Interface for configuring the application, it happens that such an application stores the captured configuration in a non human readable file. The disadvantage of this approach is that the system administrator can only see the configuration by starting the application and opening the dialogue to see the settings. This also blocks automation of deploy and install scripts and integration with automatic deploy tooling such as Puppet\footnote{\url{https://puppetlabs.com/}} or Chef\footnote{\url{http://www.opscode.com/chef/}}.
+It happens often that developers put the location of the configuration files in source code and provide no parameters or interface to influence this location. This means the path can only be changed by building and deploying a new version of the application. Running multiple instances of a program on a machine with different parameters is effectively blocked by this approach. Additionally it can pose security risks if the file location is in a privileged location such as \verb|C:\Program Files| for Windows based systems.
+\item Pollution.\\
+When a file of a module isn't used anymore it will easily remain in disuse and get overlooked which causes pollution of your hard disk.\\
+%\item Non Human Readable Configuration Files.\\
+%When an application provides a Graphical User Interface for configuring the application, it happens that such an application stores the captured configuration in a non human readable file. The disadvantage of this approach is that the system administrator can only see the configuration by starting the application and opening the dialogue to see the settings. This also blocks automation of deploy and install scripts and integration with automatic deploy tooling such as Puppet\footnote{\url{https://puppetlabs.com/}} or Chef\footnote{\url{http://www.opscode.com/chef/}}.
 \end{itemize}
 
 \begin{center}
@@ -26,7 +28,7 @@ When an application provides a Graphical User Interface for configuring the appl
 
 Analyze the files and folders of the application, group the files that logically belong together and should be at the same location e.g.: the binaries of a system, the configuration files and the data files. In the case of log files one should first consider to {\sc Use Built-in System Logging}.
 
-Ideally it should be a structure that is re-used across applications that are installed on the same the server.This provides consistency for the system administrators.
+Ideally it should be a structure that is re-used across applications (see figure \ref{fig:singleFileLocationDiagram-01}) that are installed on the same the server.This provides consistency for the system administrator, but also might help to overcome possible redundancies of files (e.g. keeping track of the language used). It furthermore serves as clear guideline for the developers and could also be included in a reference architecture
 
 For reading the contents of configuration files PROPERTY LOADER and related patterns \cite{Wellhausen2010} can be used. 
 
@@ -37,7 +39,7 @@ For reading the contents of configuration files PROPERTY LOADER and related patt
 \label{fig:singleFileLocationDiagram-01}
 \end{figure}
 
-The applications that do file access should not use the native File IO Libraries but should use a FACADE for accessing files. This facade provides the basic file IO functionality and prohibits absolute path access. The facade is using a configurable absolute path that is the root of all file access. The relative paths branch from that root path.  This is best enforced in combination with a build server that checks which libraries are used from source code. The build should break when native File IO Libraries are used instead of the facade.
+The applications that do file access should not use the native File IO Libraries but should use a FACADE for accessing files (see figure \ref{fig:singleFileLocationDiagram-02}). This facade provides the basic file IO functionality and prohibits absolute path access. The facade is using a configurable absolute path that is the root of all file access. The relative paths branch from that root path.  This is best enforced in combination with a build server that checks which libraries are used from source code. The build should break when native File IO Libraries are used instead of the facade.
 
 \begin{figure}[h!]
 \centering
@@ -45,19 +47,21 @@ The applications that do file access should not use the native File IO Libraries
 \caption{Main solution structure for file access using SINGLE FILE LOCATION}
 \label{fig:singleFileLocationDiagram-02}
 \end{figure}
- 
-\begin{center}
-\ding{118} \ding{118} \ding{118} 
-\end{center}
 
-\textit{Rationale.}\\
-Without using this pattern the files of applications will be dispersed over several distinct locations which makes it hard to maintain the application. When a file of a module isn't used anymore it will easily remain in disuse and get overlooked which causes pollution of your hard disk.
+Without using this pattern the files of applications will be dispersed over several distinct locations which makes it hard to maintain the application. 
 
 If the folder structures are standardized across a development group, developers find it easier to navigate across an application and find the right files and folders.
 
 Using SINGLE FILE LOCATION is also more secure as this blocks access to vulnerable parts of the operating system as the implemented facade blocks access outside the root location. It is somewhat similar to a jailshell that prohibits users from wandering outside their home directories.
 
-A nice example of the structure of SINGLE FILE LOCATION is for instance found in the way ruby of rails applications are structured. Every project starts with a pre-defined folder and file structure. 
+\textit{A nice example of the structure of SINGLE FILE LOCATION is for instance found in the way ruby of rails applications are structured. Every project starts with a pre-defined folder and file structure.}
+ 
+%\begin{center}
+%\ding{118} \ding{118} \ding{118} 
+%\end{center}
+
+%\textit{Rationale.}\\
+
 
 
 
