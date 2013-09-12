@@ -29,29 +29,60 @@ It is also a lot easier to automatically generate incidents from specific define
 
 Of course logging in many cases has to be activated from within the system, so developers often have to explicitly program it into the system. But using the built-in logging mechanism alone does not ensure that the developers also make use of logging when it is appropriate. To address this issue guidelines could be defined and used by the developers for including logging in the system. 
 
-If it is not possible to use the built-in system logging, e.g. because of different operating systems being used, then develop your own {\sc Diagnostic Logger} \cite{Harrison2001} and define a standard for your system landscape that works good in combination with the administration tools being used. Use the properties of built-in system logging mechanisms as basis for the requirements of your own logging mechanism. The most important point hereby is that this mechanism can be connected to the ITSM tools used by the system administrators. Ensure that this standard system is used for logging. This approach can be combined with {\sc Single File Location}.
+If it is not possible to use the built-in system logging, e.g. because of different operating systems being used, then develop your own {\sc Diagnostic Logger} \cite{Harrison2011} and define a standard for your system landscape that works good in combination with the administration tools being used. Use the properties of built-in system logging mechanisms as basis for the requirements of your own logging mechanism. The most important point hereby is that this mechanism can be connected to the ITSM tools used by the system administrators. Ensure that this standard system is used for logging. This approach can be combined with {\sc Single File Location}.
 
 Some requirements a good log should met to be valuable are:
 \begin{itemize}
 	\item Log actions before they happen.
 	\item Mind the file size if logs should be copied or archived.
-	\item Split messages into different files depending on intended audience/way of using.
+	\item Split messages into different files depending on intended audience/way of using.\footnote{\url{http://gojko.net/2006/12/09/logging-anti-patterns/}}
 \end{itemize}
 
 
-To Do: \\
-For implementing a (system) logging facility one can make use of the  pattern {\sc Memento} \cite{Gamma95} which is ... Writing to a log entry is best done with the pattern {\sc Command} \cite{Gamma95} and the logger itself is best implemented with pattern {\sc Factory} \cite{Gamma95}, which creates Mementos for logged events.
+%To Do: \\
+For implementing a (system) logging facility one can make use of {\sc Memento} \cite{Gamma95} which is used for keeping track of an internal state so possible reversals will be possible. Writing to a log entry is best done with a {\sc Command} \cite{Gamma95} pattern and the logger itself is best implemented with {\sc Factory} \cite{Gamma95}, which makes it possible to create Mementos for logged events. See figures \ref{fig:systemLogging-1} and \ref{fig:systemLogging-2}.
 
-Add: Figure(s)
+To Do: Integrate these Figure(s) into one solution.
 
-%\begin{figure}[h]
-%\centering
-%\includegraphics{patterns/systemLoggingDiagram.pdf}
-%\caption{Main solution structure of BUILT-IN SYSTEM LOGGING}
-%\label{fig:systemLogging}
-%\end{figure}
-%
-%See figure \ref{fig:systemLogging}.
+\begin{figure}[h]
+\centering
+\includegraphics{patterns/systemLoggingDiagram-01.pdf}
+\caption{Main solution structure of BUILT-IN SYSTEM LOGGING \cite{Gamma95}}
+\label{fig:systemLogging-1}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics{patterns/systemLoggingDiagram-02.pdf}
+\caption{Main solution structure of BUILT-IN SYSTEM LOGGING \cite{Gamma95}}
+\label{fig:systemLogging-2}
+\end{figure}
+
+%Toelichting: An event possibly created by a monitoring tool or the application itself takes the role of anOriginator CareTaker needs to be logged (saved within aMemento) ...
+
+With our second year students System Administration we perform some practical scripting exercises with Python where they, amongst others, use some standard libraries available for Python to log events to the system event log and afterwards create a statistical plot of it with the help of the Python library Matplotlib.\footnote{\url{http://matplotlib.org/}} 
+An example of a call to the Windows system log is:
+
+%\begin{minted}[mathescape,
+%               linenos,
+%               numbersep=5pt,
+%               gobble=2,
+%               frame=lines,
+%               framesep=2mm]{python}
+               
+\lstset{language=Python}
+
+\begin{lstlisting}
+
+import win32evtlogutil
+win32evtlogutil.ReportEvent(ApplicationName, EventID, EventCategory,
+    		EventType, Inserts, Data, SID)
+
+\end{lstlisting}
+
+%\end{minted}
+
+This way the students get a feeling for how to integrate information from several resources (systems and applications) into one central store (system event log) and transform that information into a graphical output which could give  insighs into e.g. the number of incidents per month with error level ERROR.
 
 %\begin{center}
 %\ding{118} \ding{118} \ding{118} 
