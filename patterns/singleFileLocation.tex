@@ -26,7 +26,7 @@ When a file of a module isn't used anymore it will easily remain in disuse and g
 
 \textbf{Therefore: Put all related files in one (hierarchical) location. Make the path of this location configurable.}\\
 
-Analyze the files and folders of the application, group the files that logically belong together and should be at the same location e.g.: the binaries of a system, the configuration files and the data files. In the case of log files one should first consider to {\sc Use Built-in System Logging}.
+Analyze the files and folders of the application, group the files that logically belong together and should be at the same location e.g.: the binaries of a system, the configuration files and the data files. In the case of log files one should first consider to use {\sc Centralized System Logging}.
 
 Ideally it should be a structure that is re-used across applications (see figure \ref{fig:singleFileLocationDiagram-01}) that are installed on the same server. This provides consistency for the system administrator, but also might help to overcome possible redundancies of files (e.g. keeping track of the language used). It furthermore serves as a clear guideline for the developers and could also be included in a reference architecture.
 

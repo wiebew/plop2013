@@ -1,5 +1,5 @@
 \newpage
-\section*{BUILT-IN SYSTEM LOGGING}
+\section*{CENTRALIZED SYSTEM LOGGING}
 
 The application needs to provide the ability of logging certain events or actions by using the built in system logging of a platform. 
 
@@ -11,7 +11,7 @@ The application needs to provide the ability of logging certain events or action
 
 \textit{Format Variety.} A high variety of logging formats increases the complexity of integrating the information held within those several log files. It becomes a burden to nullify the different lay-outs of these log files.\\ 
 
-\textit{Location Variety.} When having a variety of log file locations the dispersion of those locations makes it difficult to gather those files to one stack.\\
+\textit{Location Variety.} When having a variety of log file locations the dispersion of those locations makes it difficult to gather those files into one location.\\
 
 \textit{Information Granularity.} Not only the formats might be varying, but also the granularity of information. This makes it hard to monitor all applications in a consistent way or to integrate the information in a consistent way for other statistical purposes like e.g. root cause analysis\footnote{\url{http://en.wikipedia.org/wiki/Root_cause_analysis}}.
 
@@ -38,6 +38,13 @@ Some requirements a good log should met to be valuable are:
 	\item Split messages into different files depending on intended audience/way of using.\footnote{\url{http://gojko.net/2006/12/09/logging-anti-patterns/}}
 \end{itemize}
 
+On the type of usage it depends how robust the chosen solution acts within daily use:
+\begin{itemize}
+	\item When normal availability is desirable one can choose, when the  centralized logging system fails, to recover the server and reload the logging of the several subsystems
+	\item When high availability is needed the centralized logging system needs to be made so, e.g. as a High Availability cluster
+\end{itemize}
+Otherwise the chosen solution could become a Single Point of Failure (SPoF).
+
 
 %To Do: \\
 For implementing a (system) logging facility one can make use of {\sc Memento} \cite{Gamma95} which is used for keeping track of an internal state so possible reversals will be possible. Writing to a log entry is best done with a {\sc Command} \cite{Gamma95} pattern and the logger itself is best implemented with {\sc Factory} \cite{Gamma95}, which makes it possible to create Mementos for logged events. See figures \ref{fig:systemLogging-1} and \ref{fig:systemLogging-2}.
@@ -47,21 +54,25 @@ To Do: Integrate these Figure(s) into one solution.
 \begin{figure}[h]
 \centering
 \includegraphics{patterns/systemLoggingDiagram-01.pdf}
-\caption{Main solution structure of BUILT-IN SYSTEM LOGGING \cite{Gamma95}}
+\caption{Main solution structure of CENTRALIZED SYSTEM LOGGING \cite{Gamma95}}
 \label{fig:systemLogging-1}
 \end{figure}
 
 \begin{figure}[h]
 \centering
 \includegraphics{patterns/systemLoggingDiagram-02.pdf}
-\caption{Main solution structure of BUILT-IN SYSTEM LOGGING \cite{Gamma95}}
+\caption{Main solution structure of CENTRALIZED SYSTEM LOGGING \cite{Gamma95}}
 \label{fig:systemLogging-2}
 \end{figure}
 
 %Toelichting: An event possibly created by a monitoring tool or the application itself takes the role of anOriginator CareTaker needs to be logged (saved within aMemento) ...
 
-With our second year students System Administration we perform some practical scripting exercises with Python where they, amongst others, use some standard libraries available for Python to log events to the system event log and afterwards create a statistical plot of it with the help of the Python library Matplotlib.\footnote{\url{http://matplotlib.org/}} 
-An example of a call to the Windows system log is:
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+As an example of the implementation of {\sc Centralize System Logging} we perform with our second year students System Administration some practical scripting exercises with Python where they, amongst others, use some standard libraries available for Python to log events to the system event log and afterwards create a statistical plot of it with the help of the Python library Matplotlib.\footnote{\url{http://matplotlib.org/}} 
+An example of a call from Python to the Windows system log is:
 
 %\begin{minted}[mathescape,
 %               linenos,
@@ -82,11 +93,16 @@ win32evtlogutil.ReportEvent(ApplicationName, EventID, EventCategory,
 
 %\end{minted}
 
-This way the students get a feeling for how to integrate information from several resources (systems and applications) into one central store (system event log) and transform that information into a graphical output which could give  insighs into e.g. the number of incidents per month with error level ERROR.
+This way the students get a feeling for how to integrate information from several resources (systems and applications) into one central store (system event log) and transform that information into a graphical output which could give insighs into e.g. the number of incidents per month with error level ERROR.
 
-%\begin{center}
-%\ding{118} \ding{118} \ding{118} 
-%\end{center}
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+Known Uses:
+Many monitoring tools provide a mechanism for gathering several logs to one central place, but even easier to use is a distributed log collector:
+- Scribe\footnote{\url{https://github.com/facebook/Scribe}} is a scalable log aggregation server used and released by Facebook as open source. Scribe is written in C++ and uses Thrift\footnote{\url{http://thrift.apache.org/}} for the protocol encoding. Since it uses thrift, virtually any language can work with it.
+- Flume\footnote{\url{https://cwiki.apache.org/FLUME/}} is an Apache project for collecting, aggregating, and moving large amounts of log data. It stores all this data on HDFS\footnote{\url{http://hadoop.apache.org/docs/stable/hdfs_design.html}}.
 
 
 
