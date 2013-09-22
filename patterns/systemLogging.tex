@@ -13,7 +13,7 @@ The application needs to provide the ability of logging certain events or action
 
 \textit{Location Variety.} When having a variety of log file locations the dispersion of those locations makes it difficult to gather those files into one location.\\
 
-\textit{Information Granularity.} Not only the formats might be varying, but also the granularity of information. This makes it hard to monitor all applications in a consistent way or to integrate the information in a consistent way for other statistical purposes like e.g. root cause analysis\footnote{\url{http://en.wikipedia.org/wiki/Root_cause_analysis}}.
+\textit{Information Granularity.} Not only the formats might be varying, but also the granularity of information. This makes it hard to monitor all applications in a consistent way or to integrate the information in a consistent way for other statistical purposes like e.g. root cause analysis \cite{conf/mkwi/PaschkeS06}.
 
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
@@ -95,15 +95,12 @@ win32evtlogutil.ReportEvent(ApplicationName, EventID, EventCategory,
 
 This way the students get a feeling for how to integrate information from several resources (systems and applications) into one central store (system event log) and transform that information into a graphical output which could give insighs into e.g. the number of incidents per month with error level ERROR.
 
-\begin{center}
-\ding{118} \ding{118} \ding{118} 
-\end{center}
-
-Known Uses:
+Known Uses:\\
 Many monitoring tools provide a mechanism for gathering several logs to one central place, but even easier to use is a distributed log collector:
-- Scribe\footnote{\url{https://github.com/facebook/Scribe}} is a scalable log aggregation server used and released by Facebook as open source. Scribe is written in C++ and uses Thrift\footnote{\url{http://thrift.apache.org/}} for the protocol encoding. Since it uses thrift, virtually any language can work with it.
-- Flume\footnote{\url{https://cwiki.apache.org/FLUME/}} is an Apache project for collecting, aggregating, and moving large amounts of log data. It stores all this data on HDFS\footnote{\url{http://hadoop.apache.org/docs/stable/hdfs_design.html}}.
-
+\begin{itemize}
+	\item Scribe\footnote{\url{https://github.com/facebook/Scribe}} is a scalable log aggregation server used and released by Facebook as open source. Scribe is written in C++ and uses Thrift\footnote{\url{http://thrift.apache.org/}} for the protocol encoding. Since it uses thrift, virtually any language can work with it.
+	\item Flume\footnote{\url{https://cwiki.apache.org/FLUME/}} is an Apache project for collecting, aggregating, and moving large amounts of log data. It stores all this data on HDFS\footnote{\url{http://hadoop.apache.org/docs/stable/hdfs_design.html}}.
+\end{itemize}
 
 
 
