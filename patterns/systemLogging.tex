@@ -45,7 +45,7 @@ On the type of usage it depends how robust the chosen solution acts within daily
 \end{itemize}
 Otherwise the chosen solution could become a Single Point of Failure (SPoF).
 
-For implementing a (system) logging facility one can make use of {\sc  Factory} \cite{Gamma95}, which makes it possible to create loggers for different applications. See figure \ref{fig:systemLogging}. Becasue one wants just one instance of a system logger {\sc  Singleton} \cite{Gamma95} is the preferent way to implement it.
+For implementing a (system) logging facility one can make use of {\sc  Factory} \cite{Gamma95}, which makes it possible to create loggers ({\sc  Adapters} \cite{Gamma95}) for different applications. See figure \ref{fig:systemLogging}. Becasue one wants just one instance of a system logger {\sc  Singleton} \cite{Gamma95} is the preferent way to implement it.
 
 \begin{figure}[h]
 \centering
