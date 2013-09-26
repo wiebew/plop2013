@@ -21,7 +21,7 @@ The application needs to provide the ability of logging certain events or action
 
 \textbf{Therefore: Use the built-in system logging mechanism whenever possible. If it is not possible, then define a standard format to be used by all systems and implement your own logger.}\\
 
-Many monitoring tools use the system built-in logging mechanisms. The connection between these is well defined and proven. It is therefore of help for the system administrators if these built-in logging mechanisms are used by all applications, as this allows the administrators to make use of existing tools (e.g. Nagios\footnote{\url{http://www.nagios.org/}} or HP OpenView) that collect, centralize, and search the logs \cite{Limoncelli2011a}.
+Many monitoring tools use the system built-in logging mechanisms. The connection between these is well defined and proven. It is therefore of help for the system administrators if these built-in logging mechanisms are used by all applications, as this allows the administrators to make use of existing tools (e.g. Nagios\footnote{\url{http://www.nagios.org/}} or HP OpenView\footnote{\url{http://www.openview.hp.com/}}) that collect, centralize, and search the logs \cite{Limoncelli2011a}.
 
 The built-in system logging mechanisms take care of the log file location problem. They also prescribe the format, thereby forcing the developers, but also supporting them, to make consistent use of logging on the appropriate granularity.
 
@@ -45,24 +45,13 @@ On the type of usage it depends how robust the chosen solution acts within daily
 \end{itemize}
 Otherwise the chosen solution could become a Single Point of Failure (SPoF).
 
-
-%To Do: \\
-For implementing a (system) logging facility one can make use of {\sc Memento} \cite{Gamma95} which is used for keeping track of an internal state so possible reversals will be possible. Writing to a log entry is best done with a {\sc Command} \cite{Gamma95} pattern and the logger itself is best implemented with {\sc Factory} \cite{Gamma95}, which makes it possible to create Mementos for logged events. See figures \ref{fig:systemLogging-1} and \ref{fig:systemLogging-2}.
-
-To Do: Integrate these Figure(s) into one solution.
+For implementing a (system) logging facility one can make use of {\sc  Factory} \cite{Gamma95}, which makes it possible to create loggers for different applications. See figure \ref{fig:systemLogging}. Becasue one wants just one instance of a system logger {\sc  Singleton} \cite{Gamma95} is the preferent way to implement it.
 
 \begin{figure}[h]
 \centering
-\includegraphics{patterns/systemLoggingDiagram-01.pdf}
-\caption{Main solution structure of CENTRALIZED SYSTEM LOGGING \cite{Gamma95}}
-\label{fig:systemLogging-1}
-\end{figure}
-
-\begin{figure}[h]
-\centering
-\includegraphics{patterns/systemLoggingDiagram-02.pdf}
-\caption{Main solution structure of CENTRALIZED SYSTEM LOGGING \cite{Gamma95}}
-\label{fig:systemLogging-2}
+\includegraphics{patterns/systemLoggingDiagram.pdf}
+\caption{Main solution structure of CENTRALIZED SYSTEM LOGGING}
+\label{fig:systemLogging}
 \end{figure}
 
 %Toelichting: An event possibly created by a monitoring tool or the application itself takes the role of anOriginator CareTaker needs to be logged (saved within aMemento) ...
@@ -71,7 +60,7 @@ To Do: Integrate these Figure(s) into one solution.
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
-As an example of the implementation of {\sc Centralize System Logging} we perform with our second year students System Administration some practical scripting exercises with Python where they, amongst others, use some standard libraries available for Python to log events to the system event log and afterwards create a statistical plot of it with the help of the Python library Matplotlib.\footnote{\url{http://matplotlib.org/}} 
+As an example of the implementation of {\sc Centralized System Logging} we perform with our second year students System Administration some practical scripting exercises with Python where they, amongst others, use some standard libraries available for Python to log events to the system event log and afterwards create a statistical plot of it with the help of the Python library Matplotlib.\footnote{\url{http://matplotlib.org/}} 
 An example of a call from Python to the Windows system log is:
 
 %\begin{minted}[mathescape,
