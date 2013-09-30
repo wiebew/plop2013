@@ -39,7 +39,9 @@ For reading the contents of configuration files {\sc Property Loader} and relate
 \label{fig:singleFileLocationDiagram-01}
 \end{figure}
 
-The applications that do file access should not use the native File IO Libraries but should use a {\sc Facade} \cite{Gamma95} for accessing files (see figure \ref{fig:singleFileLocationDiagram-02}). This {\sc Facade} provides the basic file IO functionality and prohibits absolute path access. The {/sc Facade} is using a configurable absolute path that is the root of all file access. The relative paths branch from that root path.  This is best enforced in combination with a build server that checks which libraries are used from source code. The build should break when native File IO Libraries are used instead of the {\sc Facade}.
+The applications that do file access should not use the native File IO Libraries but should use a {\sc Facade} \cite{Gamma95} for accessing files (see figure \ref{fig:singleFileLocationDiagram-02}). This {\sc Facade} provides the basic file IO functionality and prohibits absolute path access. The {\sc Facade} is using a configurable absolute path that is the root of all file access. The relative paths branch from that root path.  This is best enforced in combination with a build server that checks which libraries are used from source code. The build should break when native File IO Libraries are used instead of the library that provides the {\sc Facade}. 
+
+If the folder structures are standardized across a development group, developers find it easier to navigate across an application and find the right files and folders. This can also be supported by providing skeleton solution or projects structures within the developement environments such as Eclipse\footnote{\url{http://eclipse	.org/}} or Microsoft Visual Studio\footnote{\url{http://www.microsoft.com/visualstudio/}}.
 
 \begin{figure}[h!]
 \centering
@@ -49,8 +51,6 @@ The applications that do file access should not use the native File IO Libraries
 \end{figure}
 
 Without using this pattern the files of applications will be dispersed over several distinct locations which makes it hard to maintain the application. 
-
-If the folder structures are standardized across a development group, developers find it easier to navigate across an application and find the right files and folders.
 
 Using SINGLE FILE LOCATION AND STRUCTURE is also more secure as this blocks access to vulnerable parts of the operating system as the implemented {\sc Facade} blocks access outside the root location. It is somewhat similar to a jailshell\footnote{Jailshell is a very limited shell that allows clients to logon to your server via SSH. It limits them to their home directories, keeping the rest of your files on your server from being viewed (\url{http://stackoverflow.com/tags/jail-shell/info).}} that prohibits users from wandering outside their home directories.
 
