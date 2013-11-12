@@ -1,6 +1,8 @@
 \section{Introduction} 
 
-In the article \textit{A plea from sysadmins to software vendors: 10 Do's and Don'ts} by Thomas Limoncelli \cite{Limoncelli2011a}, system administrators collected a basic list of do's and dont's for software vendors in order to make the life of the system administrators more easy. 
+%Unknown1: precise, concise & clear
+%U1: Weak description of the context background and ...
+In the article \textit{A plea from sysadmins to software vendors: 10 Do's and Don'ts} by Thomas Limoncelli \cite{Limoncelli2011a}, system administrators collected a basic list of do's and dont's (guidelines) for software vendors in order to make the life of the system administrators more easy. 
 
 For a large number of points in this list there is a high agreement between administrators on what the best practices should be. However as system adminstrators are on the "receiving" end for a new or modified application, it is necessary to influence other parties who have a key position in the creation or the changing of an application. 
 
@@ -8,12 +10,25 @@ A role that fits this key position is the software architect. Among other concer
 
 This paper aims at influencing the software architects and the software architecture by providing patterns for software architecture that are endorsed by system administrators.
 
-The focus of Software Architecture is often on realizing quality attributes, such as those described in ISO 25010: Functional suitability, Performance efficiency, Compatibility, Usability, Reliability, Security, Maintainability and Portability. Many patterns have been described, e.g. in the POSA book series \cite{Buschmann1996}, and their general applicability for realizing the qualities has been discussed \cite{Harrison2011}. There are also publications that focus on patterns for specific quality aspects, like patterns for fault tolerant systems \cite{Hanmer2007} or security patterns \cite{Schumacher2005}. But there is one quality attribute where not much attention has been paid to: Portability and its sub-qualities Adaptability, Installability, and Replaceability. A number of concerns from system administrators are covered by the aforementioned attributes, but the mapping of the concerns on the attributes is not intuitive.
+%U1: functional & non-functional aspects
+The focus of Software Architecture is often on realizing quality attributes, such as those described in ISO 25010: functional suitability, performance efficiency, compatibility, usability, reliability, security, maintainability and portability. Many patterns have been described, e.g. in the POSA book series \cite{Buschmann1996}, and their general applicability for realizing the qualities has been discussed \cite{Harrison2011}. 
+%Peter: What is a System Administrator?
+%- What does he do?
+%Examples? Upfront
+%Unknown1: I agree that administration aspects are close to portability. Why the reference to security for example?
+%Unknown1: adaptability is vague in this way!!
+There are also publications that focus on patterns for specific quality aspects, like patterns for fault tolerant systems \cite{Hanmer2007} or security patterns \cite{Schumacher2005}.
+%Rebecca: This (But there is ...) is the heart of your reasons for writing these patterns, but it is burried here. Should be upfront. Intro is way too long. (Roland / Christian)
+%Peter: claim about Portability is unproven? Relevant
+ But there is one quality attribute where not much attention has been paid to: Portability and its sub-qualities Adaptability, Installability, and Replaceability. A number of concerns from system administrators are covered by the aforementioned attributes, but the mapping of the concerns on the attributes is not intuitive.
 
 There have been several initiatives to describe patterns from the perspective of a system administrator, but these are mainly focused on infrastructure and middleware. Examples of these initiatives are: 
+%Rebecca: Belong somewhere else or less verbose (Roland)
 \begin{itemize}
-	\item Daniel Jumelet: Open Infrastructure Architecture repository (OIAr)\footnote{\url{http://www.infra-repository.org/oiar/index.php/Main_Page}} - this site provides a wide variety of infrastructure patterns for several working areas: Client Realm, Middleware, Network, Security + Support, Server, Storage. Beside this repository also contains architecture \& design guidelines in the form of construction models at various levels and from various angles. It is constructed by making use of one of the most important tools of OIAm: The Building Blocks Model. The Building Blocks Model is primarily a \textit{decomposition} tool. That means that it is used to dissect infrastructure landscapes into logical dimensions and parts in order to enable structured and methodological modeling (\textit{composition}). 
-	\item Gregor Hohpe and Bobby Woolf: Enterprise Integration Patterns\footnote{\url{http://www.eaipatterns.com/}} - this site provides a consistent vocabulary and visual notation to describe large-scale integration solutions across many implementation technologies. It also explores in detail the advantages and limitations of asynchronous messaging architectures. 
+	\item Daniel Jumelet: Open Infrastructure Architecture repository (OIAr)\footnote{\url{http://www.infra-repository.org/oiar/index.php/Main_Page}} - this site provides a wide variety of infrastructure patterns for several working areas: Client Realm, Middleware, Network, Security + Support, Server, Storage. Beside this repository also contains architecture \& design guidelines in the form of construction models at various levels and from various angles. It is constructed by making use of one of the most important tools of OIAm: The Building Blocks Model. 
+	%Not meant for an intro: The Building Blocks Model is primarily a \textit{decomposition} tool. That means that it is used to dissect infrastructure landscapes into logical dimensions and parts in order to enable structured and methodological modeling (\textit{composition}). 
+	\item Gregor Hohpe and Bobby Woolf: Enterprise Integration Patterns\cite{Hohpe2003} - this book provides a consistent vocabulary and visual notation to describe large-scale integration solutions across many implementation technologies. 
+	%Not meant for an intro: It also explores in detail the advantages and limitations of asynchronous messaging architectures. 
 \end{itemize}
 
 Both approaches --- software architecture patterns for realizing the above described quality attributes and patterns that support the work of system administrators --- don't touch some important aspects of the intersection of software architecture and system administration. Therefore we want to introduce a set of patterns which bridges this gap, based on the needs of the system administrators. 
@@ -23,6 +38,7 @@ The problems that are cited in the aforementioned article have been experienced 
 %Eltjo Poort proposes to view Software Architecture as a risk- and cost management discipline.  An architect should make decisions that %have the highest impact in terms of risk and cost \cite{Poort2011}. Software Architects in projects tend to view risk and costs in %relation to project delivery.  As a substantial amount of applications costs are incurred after the project phase, it would be %beneficial to include approaches in the software architecture to reduce risks and costs for application management. 
 
 With these patterns we want to give ideas to software architects and application developers on how to improve their applications from a system administration viewpoint. 
+%Unknown1: Audience?? ..., Admin, Application development?
 %\subsection*{Further Ideas} 
 %\begin{itemize}
 %	\item Hergebruik Zorg voor een standaardbibliotheek van standaard gebruikte oplossingen. Bijv. Logging, Security, Datumafhandeling, format van veelgebruikte user-data. Beheerders ondervinden veel last van dat voor iedere applicatie dezelfde functionaliteit toch net even anders gerealiseerd is en anders geconfigureerd. \textit{Comment Christian: dit zou in een pattern gaan richting {\sc Standardized Administration Tools} ofzo, dit zou dan wel {\sc Use Built-in System Logging} kunnen vervangen of specifieker maken.} 
