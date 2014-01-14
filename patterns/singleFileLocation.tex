@@ -3,6 +3,10 @@
 %                 .app stretcher in OSX(?)
 %                 registry Windows
 %Peter: 2 patterns?
+%Unknown4: Constrained by the OS?
+%Leo: Name clear? (all files should have a single structure?)
+%Leo: Fig. 4: same as Fig. 1 comments -->
+%Leo: notation not conform UML 2; Not clear: package, component, interface
 \section*{SINGLE FILE LOCATION AND STRUCTURE}
 % \parskip=0.3em
 %Roland: some people find it hard to believe these are actual problems because modern applications like SAP are organized in another way ...
@@ -24,6 +28,7 @@ It happens often that developers put the location of the configuration files in 
 %Peter: garbage collection of installation components
 \item Pollution.\\
 When a file of a module isn't used anymore it will easily remain in disuse and get overlooked which causes pollution of your hard disk.\\
+%Unknown4: -Embedded Resource (As an extra item)
 %\item Non Human Readable Configuration Files.\\
 %When an application provides a Graphical User Interface for configuring the application, it happens that such an application stores the captured configuration in a non human readable file. The disadvantage of this approach is that the system administrator can only see the configuration by starting the application and opening the dialogue to see the settings. This also blocks automation of deploy and install scripts and integration with automatic deploy tooling such as Puppet\footnote{\url{https://puppetlabs.com/}} or Chef\footnote{\url{http://www.opscode.com/chef/}}.
 \end{itemize}
@@ -53,7 +58,9 @@ For reading the contents of configuration files {\sc Property Loader} and relate
 
 The applications that do file access should not use the native File IO Libraries but should use a {\sc Facade} \cite{Gamma95} for accessing files (see figure \ref{fig:singleFileLocationDiagram-02}). This {\sc Facade} provides the basic file IO functionality and prohibits absolute path access. The {\sc Facade} is using a configurable absolute path that is the root of all file access. The relative paths branch from that root path.  This is best enforced in combination with a build server that checks which libraries are used from source code. The build should break when native File IO Libraries are used instead of the library that provides the {\sc Facade}. 
 
-If the folder structures are standardized across a development group, developers find it easier to navigate across an application and find the right files and folders. This can also be supported by providing skeleton solution or projects structures within the developement environments such as Eclipse or Microsoft Visual Studio.
+If the folder structures are standardized
+%Unknown4: ? (w.r.t. stabdardized)
+across a development group, developers find it easier to navigate across an application and find the right files and folders. This can also be supported by providing skeleton solution or projects structures within the developement environments such as Eclipse or Microsoft Visual Studio.
 
 %Unknown1: figure doesn't print well!!
 \begin{figure}[h!]

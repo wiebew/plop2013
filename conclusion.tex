@@ -2,6 +2,9 @@
 
 %Rebecca: Ending conclusion/ much overlap with introduction (Eigenaar: Roland)
 
+%Unknown3: Intro? Jah?
+%Leo: Not really a conclusion
+%Leo: Future work: Too detailed; do not name future patterns
 In the article \textit{A plea from sysadmins to software vendors: 10 Do's and Don'ts} by Thomas Limoncelli \cite{Limoncelli2011a}, system administrators collected a basic list of do's and dont's for software vendors in order to make the life of the system administrators more easy. 
 
 This paper aims at influencing the software architects and the software architecture by providing patterns for software architecture that are endorsed by system administrators.
@@ -12,10 +15,15 @@ There have been several initiatives to describe patterns from the perspective of
 	\item Enterprise Integration Patterns\footnote{\url{http://www.eaipatterns.com/}}
 \end{itemize}
 
-Both approaches --- software architecture patterns for realizing the above described quality attributes and patterns that support the work of system administrators --- don't touch some important aspects of the intersection of software architecture and system administration. Therefore we want to introduce a set of patterns which bridges this gap, based on the needs of the system administrators. 
+Both approaches --- software architecture patterns for realizing the above described quality attributes and patterns that support the work of system administrators --- don't touch some important aspects of the intersection of software architecture and system administration. Therefore we want
+%Leo: W.r.t. want: Presearch on the application of the 3 patterns?
+to introduce a set of patterns which bridges this gap, based on the needs of the system administrators. 
 
 The problems that are cited in the aforementioned article have been experienced within daily system administration practice. 
 
-Further patterns we want to work on are {\sc Centralized Identity Management} and {\sc Multi-tenancy}. {\sc Centralized Identity Management} is interesting because there is an urgent need within medium to large organizations to centralize role based access information. The importance of {\sc Multi-tenancy} lies in the fact that it is a shared solution (i.e. HRM) used by different tenants ((client) organizations, departments). E.g. many municipalities have dispersed departments with their own system owners but want to share resources without creating security leaks. Multi-tenancy is an option to reach this goal of sharing resources.
+Further patterns we want to work on are {\sc Centralized Identity Management} and {\sc Multi-tenancy}.
+% Leo: Do not describe the patterns
+% {\sc Centralized Identity Management} is interesting because there is an urgent need within medium to large organizations to centralize role based access information. The importance of {\sc Multi-tenancy} lies in the fact that it is a shared solution (i.e. HRM) used by different tenants ((client) organizations, departments). E.g. many municipalities have dispersed departments with their own system owners but want to share resources without creating security leaks. Multi-tenancy is an option to reach this goal of sharing resources.
 
-With this starting point for a repository of this kind of patterns we want to give ideas to software architects and application developers on how to improve their applications from a system administration viewpoint. We think it is interesting to look for a specialized modelling language like SysML\footnote{\url{http://www.omgsysml.org/SysML_Modelling_Language_explained-finance.pdf}} to describe these patterns in the future. Beside these patterns we want to bridge the gap between system administrators and the software architects of the software which needs to be administered by these system administrators.
+With this starting point for a repository of this kind of patterns we want to give ideas to software architects and application developers on how to improve their applications from a system administration viewpoint. Beside these patterns we want to bridge the gap between system administrators and the software architects of the software which needs to be administered by these system administrators. \\
+We think it is interesting to look for a specialized modelling language like SysML\footnote{\url{http://www.omgsysml.org/SysML_Modelling_Language_explained-finance.pdf}} to describe these patterns in the future. 

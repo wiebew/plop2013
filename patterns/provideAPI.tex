@@ -1,4 +1,8 @@
 \newpage
+
+%Leo: Very usefull
+%Leo: Fig. 1: notation not conform UML 2; Not clear: package, component, interface
+%Leo: Known use: 'Admin API' in Google Scholar --> 121 hits.
 \section*{ADMINISTRATION API}
 %Peter: Give context. Examples!!!
 Every software system in a professional environment needs to be maintained by a system administrator.
@@ -7,24 +11,35 @@ Most applications provide an administrative interface for system administrators 
 \begin{center}
 \ding{118} \ding{118} \ding{118}
 \end{center}
+%Unknown4: 80% vs. 20%
+%Unknown4: administrative interface <-- bottleneck
 \textbf{If the administrative interface is a GUI, many of the standard administration tasks can not be easily automated. Repetitive tasks have to be manually completed again and again, which leads to a high frustration of the administrators. It also can be hard to get remote access to such a GUI.}\\
 
 %Peter: Unexpected usage ?? --> Unexpected automation demand
 %Peter: System administrators --> Good system administrators
+%Unknown3: non-GUI system
+%Leo: Example
 \textit{Unexpected usage.} System administrators have their own ways of organizing their administration tasks. They strive to automate many parts, often in unexpected ways, and a GUI minimizes the possibilities of doing so.\\
 
-\textit{Platform diversity.} The operating systems which administrators are using for their administration tasks often differ from the OS the application to be administered is running on.\\
+%Unknown3: OS? like Win, Max, Unix?
+\textit{Platform diversity.} The operating systems which administrators are using for their administration tasks frequently
+%Leo: offer seems to have som eirregularity within it.
+differ from the OS the application to be administered is running on.\\
 
-\textit{Rise of the Cloud} The lower cost to deploy systems in the Cloud leads to more systems being deployed and subsequently to a higher workload for the system administrators if they do not adopt more efficient means for system administration. 
+\textit{Rise of the Cloud.} The lower cost to deploy systems in the Cloud leads to more systems being deployed and subsequently to a higher workload for the system administrators if they do not adopt more efficient means for system administration. 
 %Rebecca: Did not understand this point: (Christian)
-The increase of usage of a resource when technology improves the resources efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \cite{Polimeni2008}. It seems quite likely the same will apply to the number of systems deployed in the Cloud\\
+The increase of usage of a resource when technology improves the resources
+%Leo: ?
+efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \cite{Polimeni2008}. It seems quite likely the same will apply to the number of systems deployed in the Cloud.\\
 
 %Peter: The Agile and DevOps --> + Security!!
-\textit{Increasing rate of upgrades and deploys} The Agile and DevOps development lifecycles where software upgrades are deployed on a weekly or even a  daily basis, as opposed to the quarterly and yearly deploy cycles of more traditional software development methods, imposes tight control, predictability and efficiency on the deploy, installation and configuration of software. \cite{Humble2010}
+%Unknown4: Click Once deployment vs. Standard deployment
+\textit{Increasing rate of upgrades and deploys.} The Agile and DevOps development lifecycles where software upgrades are deployed on a weekly or even a  daily basis, as opposed to the quarterly and yearly deploy cycles of more traditional software development methods, imposes tight control, predictability and efficiency on the deploy, installation and configuration of software. \cite{Humble2010}
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
+%Unknown4: GUI vs. Command line vs. Serializable Interface
 \textbf{Therefore: Provide an API for all required administration functionality. Make this API externally available, easily accessible and well documented, so that admins can automate administrative tasks and integrate it easily in the administration processes.}\\
 
 %\textit{Solution in more detail.}
@@ -34,6 +49,7 @@ The increase of usage of a resource when technology improves the resources effic
 %The system has to offer the possibility of different administration possibilities, as e.g. a regular %performance check, creation of a new user or a re-start in the case of problems, but also the signalling of a %critical condition. 
 %The system has to provide an API (application programming interface) that allows the system administrator to automate system administration tasks. Examples of such tasks are: a regular performance check, creation of a new user or a re-start in the case of problems, but also the signaling of a critical condition.  
 
+%Leo: Example
 Offering an administration API provides much more flexibility for the system administrators to administer the systems in the way they think fits best. It gives them enough freedom to integrate the administration in existing processes. In order to be able to offer this high degree of freedom regarding the usage of the API, the system developers have to carefully design it and to offer the administration functionality in appropriate abstraction levels. This means that the API should be fine-grained enough.
 %Unknown1: Contradicts the objectivbe of reuse!! (Abstraction)
 
@@ -50,7 +66,11 @@ To securely expose administrative features utilize a {\sc Proxy} \cite{Buschmann
 If the system evolves, the API is also likely to change which might require adaptations the system developers are not aware of. This is a general problem in interface- and component-based development and needs to be addressed in the design of the API too. 
 
 %Peter: or IDE Scram...bin? i.e. Apple interpreter
-Providing an API might require more elaborate documentation compared to a more intuitive and self-explaining administrative GUI. For example: an API might require the correct spelling of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in a separate window section. %Rebecca: what does this mean? (Christian to clarify)
+Providing an API might require more elaborate documentation compared to a more intuitive and self-explaining administrative GUI. 
+%Unknown4: ?
+For example: an API might require the correct spelling
+%Unknown4: ? (t.a.v. het woord spelling)
+of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in a separate window section. %Rebecca: what does this mean? (Christian to clarify)
 This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with clear error messages. \\
 
 %\textit{Implementation details, referring back to negative consequences}
@@ -63,6 +83,11 @@ In the most simple cases the pattern is a specific variant of a {\sc Service Lay
 \caption{Main solution structure of PROVIDE AN ADMINISTRATION API}
 \label{fig:provideAPIDiagram-01}
 \end{figure}
+% Unknown3: Configuration subsystem <-- GUI?
+% Unknown3: Administration tools <-- GUI? Automated Script?
+%Leo: W.r.t. 'Administration API': Why a component icon?
+%Leo: Why in old UML version?
+%Leo: Why not represent it as a lollypop? (See ... SA p.77)
 
 If the administration API should not be publicly available due to security reasons, a {\sc Proxy} \cite{Buschmann1996} could be used to adequately address this issue. Figure \ref{fig:provideAPIDiagram-02} shows the main design. The protection proxy needs to include some mechanism for authentication and authorization of the requester.
 

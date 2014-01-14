@@ -2,9 +2,19 @@
 
 %Unknown1: precise, concise & clear
 %U1: Weak description of the context background and ...
+%Leo: 
+% - Problem: Is touched, but not explained.
+%            What are these 10 do's & don'ts?
+%            What is the relationship to 3 patterns?
+% - Contribution: Weak: - What is the problem?
+%                       - Is it not solved before?
+% - Portability is covered by layers, adapters, ...
+% - Missing: - Scope, Research Question
+%            - Method
+%            - Paper intro
 In the article \textit{A plea from sysadmins to software vendors: 10 Do's and Don'ts} by Thomas Limoncelli \cite{Limoncelli2011a}, system administrators collected a basic list of do's and dont's (guidelines) for software vendors in order to make the life of the system administrators more easy. 
 
-For a large number of points in this list there is a high agreement between administrators on what the best practices should be. However as system adminstrators are on the "receiving" end for a new or modified application, it is necessary to influence other parties who have a key position in the creation or the changing of an application. 
+For a large number of points in this list there is a high agreement between administrators on what the best practices should be. However as system adminstrators are on the "receiving" end for a new or modified application, it is necessary to influence other parties who have a key position in creating or changing an application. 
 
 A role that fits this key position is the software architect. Among other concerns the software architect is responsible for the software architecture. The software architecture is the main design document for the software of an application. The design decisions taken in that document have a profound impact on the workload of the system administrators. 
 
@@ -26,9 +36,9 @@ There have been several initiatives to describe patterns from the perspective of
 %Rebecca: Belong somewhere else or less verbose (Roland)
 \begin{itemize}
 	\item Daniel Jumelet: Open Infrastructure Architecture repository (OIAr)\footnote{\url{http://www.infra-repository.org/oiar/index.php/Main_Page}} - this site provides a wide variety of infrastructure patterns for several working areas: Client Realm, Middleware, Network, Security + Support, Server, Storage. Beside this repository also contains architecture \& design guidelines in the form of construction models at various levels and from various angles. It is constructed by making use of one of the most important tools of OIAm: The Building Blocks Model. 
-	%Not meant for an intro: The Building Blocks Model is primarily a \textit{decomposition} tool. That means that it is used to dissect infrastructure landscapes into logical dimensions and parts in order to enable structured and methodological modeling (\textit{composition}). 
+	%R:Not meant for an intro: The Building Blocks Model is primarily a \textit{decomposition} tool. That means that it is used to dissect infrastructure landscapes into logical dimensions and parts in order to enable structured and methodological modeling (\textit{composition}). 
 	\item Gregor Hohpe and Bobby Woolf: Enterprise Integration Patterns\cite{Hohpe2003} - this book provides a consistent vocabulary and visual notation to describe large-scale integration solutions across many implementation technologies. 
-	%Not meant for an intro: It also explores in detail the advantages and limitations of asynchronous messaging architectures. 
+	%R:Not meant for an intro: It also explores in detail the advantages and limitations of asynchronous messaging architectures. 
 \end{itemize}
 
 Both approaches --- software architecture patterns for realizing the above described quality attributes and patterns that support the work of system administrators --- don't touch some important aspects of the intersection of software architecture and system administration. Therefore we want to introduce a set of patterns which bridges this gap, based on the needs of the system administrators. 
