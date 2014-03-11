@@ -4,6 +4,8 @@
 %Leo: Fig. 1: notation not conform UML 2; Not clear: package, component, interface
 %Leo: Known use: 'Admin API' in Google Scholar --> 121 hits.
 \section*{ADMINISTRATION API}
+
+\textit{Context:}\\
 %Peter: Give context. Examples!!!
 Every software system in a professional environment needs to be maintained by a system administrator.
 %Peter: Maintenance free software?
@@ -13,6 +15,7 @@ Most applications provide an administrative interface for system administrators 
 \end{center}
 %Unknown4: 80% vs. 20%
 %Unknown4: administrative interface <-- bottleneck
+\textit{Problem and forces:\\}
 \textbf{If the administrative interface is a GUI, many of the standard administration tasks can not be easily automated. Repetitive tasks have to be manually completed again and again, which leads to a high frustration of the administrators. It also can be hard to get remote access to such a GUI.}\\
 
 %Peter: Unexpected usage ?? --> Unexpected automation demand
@@ -39,6 +42,7 @@ efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
+%3. The third part offers the solution (again in bold), consequences of the pattern application --- which are part of the resulting context --- and a discussion of possible implementations.
 %Unknown4: GUI vs. Command line vs. Serializable Interface
 \textbf{Therefore: Provide an API for all required administration functionality. Make this API externally available, easily accessible and well documented, so that admins can automate administrative tasks and integrate it easily in the administration processes.}\\
 
@@ -49,6 +53,8 @@ efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \
 %The system has to offer the possibility of different administration possibilities, as e.g. a regular %performance check, creation of a new user or a re-start in the case of problems, but also the signalling of a %critical condition. 
 %The system has to provide an API (application programming interface) that allows the system administrator to automate system administration tasks. Examples of such tasks are: a regular performance check, creation of a new user or a re-start in the case of problems, but also the signaling of a critical condition.  
 
+
+\textit{Solution description:}\\
 %Leo: Example
 Offering an administration API provides much more flexibility for the system administrators to administer the systems in the way they think fits best. It gives them enough freedom to integrate the administration in existing processes. In order to be able to offer this high degree of freedom regarding the usage of the API, the system developers have to carefully design it and to offer the administration functionality in appropriate abstraction levels. This means that the API should be fine-grained enough.
 %Unknown1: Contradicts the objectivbe of reuse!! (Abstraction)
@@ -107,6 +113,12 @@ These can be implemented making use of e.g. a pattern like {\sc Adapter} \cite{G
 In certain cases the implementation language of the system and that of the administration API are different. Main reason for this could be that the administration API is required to be provided in a specific scripting language that suits the administrators' tasks best. In that case the administration API subsystem also becomes a specific kind of an {\sc Adapter} \cite{Gamma95} between these two implementation languages.
 %Unknown1: missed a three-tiered architecture positioning to style ??
 
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+\textit{Rationale:}\\
+%In the final part of each pattern, shown in \textit{italics}, we discuss related patterns and offer a rationale for the pattern based on literature.
 %Peter: separate pattern?
 The problem of different platforms used for the system and in the administration environment can be minimized by making use of cross-platform scripting languages like Python, Ruby or TCL. This is also a certain advantage above graphical administration interfaces, as it removes the platform-specific issues caused by the GUI technologies. In combination with such a cross-platform scripting language this pattern shows its real strength as one can uniformly approach the administration API on any given platform.
 
@@ -116,7 +128,7 @@ Ideally, any changes in the system itself do not lead to changes in the administ
 
 %TODO: some stuff on documentation of the API.
 
-
+Known uses:\\
 \textit{Microsoft Sharepoint 2013 provides a rich set of APIs. Especially the server object model API offers all required functionality for administration tasks as ``backup, farm health and diagnostics, logging, farm and web application management, upgrade, deployment, caching, and Windows PowerShell customization."\footnote{see \url{http://msdn.microsoft.com/en-us/library/sharepoint/jj164060.aspx}}}
 
 \textit{Another known use of this pattern can be found in Software-Defined Networking. This networking architecture is designed to use standardized APIs for defining and reconfiguring the way data and resources are handled within a network and to make interfacing and reconfiguring the network and its components easier \cite{Kirkpatrick2013}.}

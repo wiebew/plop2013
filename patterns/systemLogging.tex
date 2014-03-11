@@ -15,6 +15,7 @@
 %Unknown3: System <-- Distributed?
 %Unknown3: Why it needed? 
 
+\textit{Context:}\\
 The application needs to provide the ability of logging certain events or actions 
 %Leo: seems to be the solution to sub 1:
 by using the built in system logging of a platform. 
@@ -23,6 +24,7 @@ by using the built in system logging of a platform.
 \ding{118} \ding{118} \ding{118}
 \end{center}
 
+\textit{Problem and forces:\\}
 \textbf{Having a variety of logging formats and log-file locations makes it hard to monitor the state of a whole enterprise, including all running applications.}\\
 
 \textit{Format Variety.} A high variety of logging formats increases the complexity of integrating the information held within those several log files. It becomes a burden to nullify
@@ -30,7 +32,7 @@ by using the built in system logging of a platform.
 the different lay-outs of these log files.\\ 
 
 %Peter: reconsider
-\textit{Location Variety.} When having a variety of log file locations the dispersion of those locations makes it hard to find those log files.
+\textit{Location Variety.} When having a variety of log file locations the dispersion of those locations makes it hard to find those log files.\\
 %difficult to gather those files into one location.\\
 
 \textit{Information Granularity.} Not only the formats might be varying, but also the granularity of information. This makes it hard to monitor all applications in a consistent way or to integrate the information in a consistent way for other statistical purposes like e.g. root cause analysis \cite{conf/mkwi/PaschkeS06}.
@@ -39,6 +41,7 @@ the different lay-outs of these log files.\\
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
+%3. The third part offers the solution (again in bold), consequences of the pattern application --- which are part of the resulting context --- and a discussion of possible implementations.
 %Rebecca: Don't agree with this (Roland, navragen bij Rebecca)
 \textbf{Therefore:
 %Leo: sub 1
@@ -49,6 +52,7 @@ If it is not possible, then define a standard format to be used by all systems
 and implement your own logger.}\\
 %Peter: ..., ..., OS-defined logger
 
+\textit{Solution description:}\\
 Many monitoring tools use the system built-in logging mechanisms. The connection between these is well defined and proven. It is therefore of help for the system administrators if these built-in logging mechanisms are used by all applications, as this allows the administrators to make use of existing tools (e.g. Nagios\footnote{\url{http://www.nagios.org/}} or HP OpenView\footnote{\url{http://www.openview.hp.com/}}) that collect, centralize, and search the logs \cite{Limoncelli2011a}.
 
 The built-in system logging mechanisms take care of the log file location problem. They also prescribe the format, thereby forcing the developers, but also supporting them, to make consistent use of logging on the appropriate granularity.
@@ -74,12 +78,12 @@ Some requirements a good log should met to be valuable are\footnote{\url{http://
 %Unknown1: the relationships between the studied patterns and the related patterns are not clear. We use the term 'uplent'(?). What about Dependency and Composition?? Abstraction (pattern language).
 On the type of usage it depends how robust the chosen solution acts within daily use:
 \begin{itemize}
-	\item When normal availability is desirable one can choose, when the  centralized logging system fails, to recover the server and reload the logging of the several subsystems
-	\item When high availability is needed the centralized logging system needs to be made so, e.g. as a High Availability cluster
+	\item When normal availability is desirable one can choose, when the  centralized logging system fails, to recover the server and reload the logging of the several subsystems.
+	\item When high availability is needed the centralized logging system needs to be made so, e.g. as a High Availability cluster.
 \end{itemize}
 Otherwise the chosen solution could become a Single Point of Failure (SPoF).
 
-For implementing a (system) logging facility one can make use of {\sc  Factory} \cite{Gamma95}, which makes it possible to create loggers ({\sc  Adapters} \cite{Gamma95}) for different applications. See figure \ref{fig:systemLogging}. Becasue one wants just one instance of a system logger, {\sc  Singleton} \cite{Gamma95} is the preferent way to implement it.
+For implementing a (system) logging facility one can make use of {\sc  Factory} \cite{Gamma95}, which makes it possible to create loggers ({\sc  Adapters} \cite{Gamma95}) for different applications. See figure \ref{fig:systemLogging}. Becasue one wants just one instance of a system logger, {\sc  Singleton} \cite{Gamma95} seems to be the preferent way to implement it. But becasue one wants to be able to test  it, beside the production version, several instances should be possible therefore the number of instances should be parametrizable.
 %Peter: bad for testing logging! Parameterize.
 
 \begin{figure}[h]
@@ -99,6 +103,10 @@ For implementing a (system) logging facility one can make use of {\sc  Factory} 
 \end{center}
 
 %Rebecca: All patterns should be in a consistent form. This is different than others. (Roland)
+\textit{Rationale:}\\
+%In the final part of each pattern, shown in \textit{italics}, we discuss related patterns and offer a rationale for the pattern based on literature.
+...
+
 Known Uses:\\
 Many monitoring tools provide a mechanism for gathering several logs to one central place, but even easier to use is a distributed log collector:
 \begin{itemize}

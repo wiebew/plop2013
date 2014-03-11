@@ -10,6 +10,7 @@
 \section*{SINGLE FILE LOCATION AND STRUCTURE}
 % \parskip=0.3em
 %Roland: some people find it hard to believe these are actual problems because modern applications like SAP are organized in another way ...
+\textit{Context:}\\
 Files are an established mechanism used by applications to store and
 %Peter: Stated too general config files
 retrieve configuration, libraries, state, data etc. Most applications use files in their own unique manner and store files in various locations. This may lead to having files that are dispersed over different folders or hidden in system-folders of the Operating System. System administrators  want to be able to perform version control on the files.
@@ -17,6 +18,7 @@ retrieve configuration, libraries, state, data etc. Most applications use files 
 \ding{118} \ding{118} \ding{118}
 \end{center}
 
+\textit{Problem and forces:\\}
 \textbf{Having dispersed files causes system administrators to have difficulty in finding the files necessary for their tasks during the life cycle of an application.}\\
 
 %forces
@@ -37,9 +39,11 @@ When a file of a module isn't used anymore it will easily remain in disuse and g
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
+%3. The third part offers the solution (again in bold), consequences of the pattern application --- which are part of the resulting context --- and a discussion of possible implementations.
 \textbf{Therefore: Put all related files in one (hierarchical) location. Make the path of this location configurable.}\\
 %Unknown1: w.r.t. (hierachical) location: Repository?? Folders? File management system?
 
+\textit{Solution description:}\\
 Analyze the files and folders of the application, group the files that logically belong together and should be at the same location e.g.: the binaries of a system, the configuration files and the data files. In the case of log files one should first consider to use {\sc Centralized System Logging}.
 %Unknown1: Classification
 
@@ -73,6 +77,11 @@ across a development group, developers find it easier to navigate across an appl
 
 Without using this pattern the files of applications will be dispersed over several distinct locations which makes it hard to maintain the application. 
 
+\begin{center}
+\ding{118} \ding{118} \ding{118} 
+\end{center}
+
+\textit{Rationale:}\\
 Using SINGLE FILE LOCATION AND STRUCTURE is also more secure as this blocks access to vulnerable parts of the operating system as the implemented {\sc Facade} blocks access outside the root location. It is somewhat similar to a jailshell\footnote{Jailshell is a very limited shell that allows clients to logon to your server via SSH. It limits them to their home directories, keeping the rest of your files on your server from being viewed (\url{http://stackoverflow.com/tags/jail-shell/info).}} that prohibits users from wandering outside their home directories.
 
 \textit{A nice example of the structure of SINGLE FILE LOCATION AND STRUCTURE 
@@ -88,5 +97,6 @@ without a {\sc Facade} is for instance found in the way Ruby on Rails\footnote{\
 %\textit{Rationale.}\\
 
 
-
+Known uses:\\
+???
 
