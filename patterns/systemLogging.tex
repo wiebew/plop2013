@@ -16,19 +16,19 @@
 %Unknown3: Why it needed? 
 
 \textit{Context:}\\
-The application needs to provide the ability of logging certain events or actions 
+The application needs to provide the ability of logging certain events or actions for the application developer. The application developer is one target audience for the need of logging, the other target audience is the system administrator for the purpose of system management, especially monitoring of system (landscapes).
 %Leo: seems to be the solution to sub 1:
-by using the built in system logging of a platform. 
+% by using the built in system logging of a platform. --> See Therefore
 
 \begin{center}
 \ding{118} \ding{118} \ding{118}
 \end{center}
 
 \textit{Problem and forces:\\}
-\textbf{Having a variety of logging formats and log-file locations makes it hard to monitor the state of a whole enterprise, including all running applications.}\\
+\textbf{Having a variety of logging formats and log-file locations makes it hard to monitor the state of a whole enterprise, including all running applications. In the case of an error it is hard to find the cause for it when multiple logs are dispersed over hundreds of servers without the right tools. Some problems which could be met when trying to integrate the wide variety of log files and their formats are:}\\
 
 \textit{Format Variety.} A high variety of logging formats increases the complexity of integrating the information held within those several log files. It becomes a burden to nullify
-%Peter: nullify?? --> analyse
+%Peter: nullify?? --> analyse <-- Roland: teniet doen is ook een betekenis van nullify
 the different lay-outs of these log files.\\ 
 
 %Peter: reconsider
@@ -45,15 +45,19 @@ the different lay-outs of these log files.\\
 %Rebecca: Don't agree with this (Roland, navragen bij Rebecca)
 \textbf{Therefore:
 %Leo: sub 1
-Use the built-in system logging mechanism whenever possible.
+Use the built-in system logging mechanism whenever possible (preferred solution).\\
 %Leo: sub 2
 If it is not possible, then define a standard format to be used by all systems 
 %Leo: what do you mean with 'systems'? --> Systems, OR: Subsystems of one application, OR: platform systems
-and implement your own logger.}\\
+and implement your own logger (alternative solution).}\\
 %Peter: ..., ..., OS-defined logger
 
 \textit{Solution description:}\\
-Many monitoring tools use the system built-in logging mechanisms. The connection between these is well defined and proven. It is therefore of help for the system administrators if these built-in logging mechanisms are used by all applications, as this allows the administrators to make use of existing tools (e.g. Nagios\footnote{\url{http://www.nagios.org/}} or HP OpenView\footnote{\url{http://www.openview.hp.com/}}) that collect, centralize, and search the logs \cite{Limoncelli2011a}.
+First the preferred solution will be looked at. Many monitoring tools use the system built-in logging mechanisms. The connection between these is well defined and proven. It is therefore of help for the system administrators if these built-in logging mechanisms are used by all applications, as this allows the administrators to make use of existing tools (e.g. Nagios \cite{Nagios}
+% \footnote{\url{http://www.nagios.org/}}
+ or HP OpenView \cite{OpenView}
+% \footnote{\url{http://www.openview.hp.com/}})
+ that collect, centralize, and search the logs \cite{Limoncelli2011a}.
 
 The built-in system logging mechanisms take care of the log file location problem. They also prescribe the format, thereby forcing the developers, but also supporting them, to make consistent use of logging on the appropriate granularity.
 
@@ -64,11 +68,13 @@ Of course logging in many cases has to be activated from within the system, so d
 %Leo: unfinished sentences
 %Leo: Structure unclear
 
-If it is not possible to use the built-in system logging, e.g. because of different operating systems being used, then develop your own {\sc Diagnostic Logger} \cite{Harrison2011} and define a standard for your system landscape that works good in combination with the administration tools being used. Use the properties of built-in system logging mechanisms as basis for the requirements of your own logging mechanism. The most important point hereby is that this mechanism can be connected to the ITSM tools used by the system administrators. Ensure that this standard system is used for logging. This approach can be combined with {\sc Single File Location}.
+Now the alternative solution will be treated. If it is not possible to use the built-in system logging, e.g. because of different operating systems being used, then develop your own {\sc Diagnostic Logger} \cite{Harrison2011} and define a standard for your system landscape that works well combined with the administration tools being used. Use the properties of built-in system logging mechanisms as basis for the requirements of your own logging mechanism. The most important point hereby is that this mechanism can be connected to the ITSM tools used by the system administrators. Ensure that this standard system is used for logging. This approach can be combined with {\sc Single File Location}.
 %Rebecca: Consequences? Should logging mean 1 log or logging in a centralized location? Use of logging services. What about log files.
+Another solution could be making use of "logging as a service" providers, one just forward the syslog or agents and the log service providers will do the collecting of the data. An example of a log service provider is papertrail \cite{papertrail}.
 
 %Leo: Some? 3 REQ's <-- ?
-Some requirements a good log should met to be valuable are\footnote{\url{http://gojko.net/2006/12/09/logging-anti-patterns/}}:
+Some requirements a good log should met to be valuable are (\cite{logging-anti-patterns}):
+% \footnote{\url{http://gojko.net/2006/12/09/logging-anti-patterns/}}:
 \begin{itemize}
 	\item Log actions before they happen.
 	\item Mind the file size if logs should be copied or archived.
@@ -83,13 +89,11 @@ On the type of usage it depends how robust the chosen solution acts within daily
 \end{itemize}
 Otherwise the chosen solution could become a Single Point of Failure (SPoF).
 
-For implementing a (system) logging facility one can make use of {\sc  Factory} \cite{Gamma95}, which makes it possible to create loggers ({\sc  Adapters} \cite{Gamma95}) for different applications. See figure \ref{fig:systemLogging}. Becasue one wants just one instance of a system logger, {\sc  Singleton} \cite{Gamma95} seems to be the preferent way to implement it. But becasue one wants to be able to test  it, beside the production version, several instances should be possible therefore the number of instances should be parametrizable.
-%Peter: bad for testing logging! Parameterize.
-
+For implementing a (system) logging facility one can make use of {\sc  Factory} \cite{Gamma95}, which makes it possible to create loggers ({\sc  Adapters} \cite{Gamma95}) for different applications. See figure \ref{fig:systemLogging}. 
 \begin{figure}[h]
 \centering
 \includegraphics{patterns/systemLoggingDiagram.pdf}
-\caption{Main solution structure of CENTRALIZED SYSTEM LOGGING}
+\caption{Alternative solution structure of CENTRALIZED SYSTEM LOGGING}
 \label{fig:systemLogging}
 \end{figure}
 %Leo: Pattern, Sub 2?
@@ -98,6 +102,8 @@ For implementing a (system) logging facility one can make use of {\sc  Factory} 
 
 %Toelichting: An event possibly created by a monitoring tool or the application itself takes the role of anOriginator CareTaker needs to be logged (saved within aMemento) ...
 
+\pagebreak[4]
+% To force the three diamonds on top of the next page instead at the bottom of this page.
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
 \end{center}
@@ -105,16 +111,25 @@ For implementing a (system) logging facility one can make use of {\sc  Factory} 
 %Rebecca: All patterns should be in a consistent form. This is different than others. (Roland)
 \textit{Rationale:}\\
 %In the final part of each pattern, shown in \textit{italics}, we discuss related patterns and offer a rationale for the pattern based on literature.
-...
+Becasue one wants just one instance of a system logger, {\sc  Singleton} \cite{Gamma95} seems to be the preferred way to implement it. But becasue one wants to be able to test  it, beside the production version, several instances should be possible therefore the number of instances should be parametrizable.\\
+%Peter: bad for testing logging! Parameterize.
 
 Known Uses:\\
 Many monitoring tools provide a mechanism for gathering several logs to one central place, but even easier to use is a distributed log collector:
 \begin{itemize}
-	\item Scribe\footnote{\url{https://github.com/facebook/Scribe}} is a scalable log aggregation server used and released by Facebook as open source. Scribe is written in C++ and uses Thrift\footnote{\url{http://thrift.apache.org/}} for the protocol encoding. Since it uses thrift, virtually any language can work with it.
-	\item Flume\footnote{\url{https://cwiki.apache.org/FLUME/}} is an Apache project for collecting, aggregating, and moving large amounts of log data. It stores all this data on HDFS\footnote{\url{http://hadoop.apache.org/docs/stable/hdfs_design.html}}.
+	\item Scribe (\cite{Scribe})
+%\footnote{\url{https://github.com/facebook/Scribe}}
+ is a scalable log aggregation server used and released by Facebook as open source. Scribe is written in C++ and uses Thrift (\cite{Thrift})
+%\footnote{\url{http://thrift.apache.org/}}
+ for the protocol encoding. Since it uses thrift, virtually any language can work with it.
+	\item Flume (\cite{Flume})
+%\footnote{\url{https://cwiki.apache.org/FLUME/}}
+ is an Apache project for collecting, aggregating, and moving large amounts of log data. It stores all this data on HDFS (\cite{HDFS}).
+%\footnote{\url{http://hadoop.apache.org/docs/stable/hdfs_design.html}}
 \end{itemize}
 
-As an example of the implementation of {\sc Centralized System Logging} we have performed with our second year students System and Network Engineering some practical scripting exercises with Python where they, amongst others, use some standard libraries available for Python to log events to the system event log and afterwards create a statistical plot of it with the help of the Python library Matplotlib.\footnote{\url{http://matplotlib.org/}} 
+As an example of the implementation of {\sc Centralized System Logging} we have performed with our second year students System and Network Engineering some practical scripting exercises with Python where they, amongst others, use some standard libraries available for Python to log events to the system event log and afterwards create a statistical plot of it with the help of the Python library Matplotlib.
+%\footnote{\url{http://matplotlib.org/}} 
 An example of a call from Python to the Windows system log is:
 
 %\begin{minted}[mathescape,
