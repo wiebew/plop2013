@@ -23,9 +23,9 @@
 
 \markboth{Bijvank et al.}{Software Architecture Patterns for System Administration Support}
 \title{Software Architecture Patterns for System Administration Support}
-\author{ROLAND BIJVANK \affil{HU University of Applied Sciences, Utrecht, the Netherlands\\ roland.bijvank@hu.nl}\ \\
-WIEBE WIERSEMA \affil{HU University of Applied Sciences, Utrecht, the Netherlands\\ wiebe.wiersema@hu.nl}\ \\
-CHRISTIAN K\"{O}PPE \affil{HAN University of Applied Sciences, Arnhem, the Netherlands\\ christian.koppe@han.nl}}
+\author{ROLAND BIJVANK \affil{HU University of Applied Sciences, Utrecht, the Netherlands}\ \\
+WIEBE WIERSEMA \affil{HU University of Applied Sciences, Utrecht, the Netherlands}\ \\
+CHRISTIAN K\"{O}PPE \affil{HAN University of Applied Sciences, Arnhem, the Netherlands}}
 %\author{ROLAND BIJVANK , WIEBE WIERSEMA and CHRISTIAN K\"{O}PPE \affil{HU University of Applied Sciences, Utrecht, the Netherlands\\ \{roland.bijvank,wiebe.wiersema,christian.koppe\}@hu.nl}}
 \parskip=0.3em
 
@@ -45,15 +45,9 @@ CHRISTIAN K\"{O}PPE \affil{HAN University of Applied Sciences, Arnhem, the Nethe
 %Unknown4 (Brahim Mahid?).
 
 \begin{abstract}
-Many quality aspects of software systems are addressed in the existing literature on software architecture patterns. But the aspect of system administration seems to be a bit
-% Leo: not scientific --> even though it is as important
- overlooked, even though it is as important as other aspects.
+Many quality aspects of software systems are addressed in the existing literature on software architecture patterns. But the aspect of system administration seems to be a bit overlooked, even though it is an important aspect too.
 % Leo: Who says so?
-In this work we present
-%start
-% Leo: not a start, intro discusses other initiatives
-% with mining 
- software architecture patterns that, when applied by software architects, support the work of system administrators. We present three patterns: {\sc Provide an Administration API}, {\sc Single File Location} and {\sc Centralized System Logging}. {\sc Provide an Administration API} should solve problems encountered when trying to automate administration tasks. The {\sc Single File Location} pattern should help system administrators to find the files of an application in one (hierarchical) place. {\sc Centralized System Logging} is useful to prevent coming up with several logging formats and locations.
+In this work we present three software architecture patterns that, when applied by software architects, support the work of system administrators: {\sc Provide an Administration API}, {\sc Single File Location}, and {\sc Centralized System Logging}. {\sc Provide an Administration API} should solve problems encountered when trying to automate administration tasks. The {\sc Single File Location} pattern should help system administrators to find the files of an application in one (hierarchical) place. {\sc Centralized System Logging} is useful to prevent coming up with several logging formats and locations.
 
 %Leo: Missing - Short intro of the (problem domain) of the 3 patterns
 \end{abstract}
@@ -66,11 +60,12 @@ In this work we present
 \terms{Software Architecture, System Administration}
 \keywords{Software Architecture, System Administration}
 \acmformat{Bijvank, R., Wiersema, W., K\"{o}ppe, C. 2013. Software Architecture Patterns for System Administration Support}
-%\copyr{PLoP'12, October 19-21, Tucson, Arizona, USA. Copyright 2012 is held by the author(s). ACM xxx}
+%\copyr{PLoP'13, October 23-21, Tucson, Arizona, USA. Copyright 2012 is held by the author(s). ACM xxx}
 \copyr{}
 
 \begin{document}
 \begin{bottomstuff}
+Authors' addresses: roland.bijvank@hu.nl; wiebe.wiersema@hu.nl; christian.koppe@han.nl\\
 Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. To copy otherwise, to republish, to post on servers or to redistribute to lists, requires prior specific permission. A preliminary version of this paper was presented in a writers' workshop at the 20th Conference on Pattern Languages of Programs (PLoP). PLoP'13, October 23-26, Monticello, Illinois, USA. Copyright 2013 is held by the author(s). ACM 978-1-XXXX-XXXX-X
 \end{bottomstuff}
 
