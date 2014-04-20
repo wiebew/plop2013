@@ -6,45 +6,45 @@
 \section*{ADMINISTRATION API}
 
 \textit{Context:}\\
-%Peter: Give context. Examples!!!
-Every software system in a professional environment needs to be maintained by a system administrator.
-%Peter: Maintenance free software?
+%Peter: Give context. Examples!!! CK: DONE
+Software systems that are deployed in a professional environment often need to be maintained by a system administrator, e.g. accounting software or software in a company that is used for managing customer relationships. These administration tasks include adding or removing users, updating the system to a new version, or establish and maintain connections to other third party software.
+%Peter: Maintenance free software? CK: not relevant anymore as context description is now more specific
 Most applications provide an administrative interface for system administrators to perform these tasks.
 \begin{center}
 \ding{118} \ding{118} \ding{118}
 \end{center}
 %Unknown4: 80% vs. 20%
 %Unknown4: administrative interface <-- bottleneck
-\textit{Problem and forces:\\}
+\textit{Problem and forces:\\} %CHristian: Willen we echt deze kopteksten?? Ik zelf vind die hartstikke storend en lelijk...
 \textbf{If the administrative interface is a GUI, many of the standard administration tasks can not be easily automated. Repetitive tasks have to be manually completed again and again, which leads to a high frustration of the administrators. It also can be hard to get remote access to such a GUI.}\\
 
 %Peter: Unexpected usage ?? --> Unexpected automation demand
 %Peter: System administrators --> Good system administrators
 %Unknown3: non-GUI system
 %Leo: Example
-\textit{Unexpected usage.} System administrators have their own ways of organizing their administration tasks. They strive to automate many parts, often in unexpected ways, and a GUI minimizes the possibilities of doing so.\\
+\textit{Unexpected Automation Demand.} Good system administrators have their own ways of organizing their administration tasks. They strive to automate many parts, often in unexpected ways, and a GUI minimizes the possibilities of doing so.\\
 
-%Unknown3: OS? like Win, Max, Unix?
-\textit{Platform diversity.} The operating systems which administrators are using for their administration tasks frequently
-%Leo: offer seems to have som eirregularity within it.
+%Unknown3: OS? like Win, Max, Unix? CK: DONE
+\textit{Platform Diversity.} The operating systems---e.g. Windows, Unix, or MacOS---which administrators are using for their administration tasks frequently
+%Leo: offer seems to have som eirregularity within it. CK: ???
 differ from the OS the application to be administered is running on.\\
 
 \textit{Rise of the Cloud.} The lower cost to deploy systems in the Cloud leads to more systems being deployed and subsequently to a higher workload for the system administrators if they do not adopt more efficient means for system administration. 
-%Rebecca: Did not understand this point: (Christian)
-The increase of usage of a resource when technology improves the resources
 %Leo: ?
-efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \cite{Polimeni2008}. It seems quite likely the same will apply to the number of systems deployed in the Cloud.\\
+%Rebecca: Did not understand this point: (Christian) CK: Ik zie de toegevoegde waarde van onderstaand deel niet (wat ook blijkt uit de commentaren), daarom als commentaar gezet
+%The increase of usage of a resource when technology improves the resources efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \cite{Polimeni2008}. It seems quite likely the same will apply to the number of systems deployed in the Cloud.\\
 
 %Peter: The Agile and DevOps --> + Security!!
 %Unknown4: Click Once deployment vs. Standard deployment
-\textit{Increasing rate of upgrades and deploys.} The Agile and DevOps development lifecycles where software upgrades are deployed on a weekly or even a  daily basis, as opposed to the quarterly and yearly deploy cycles of more traditional software development methods, imposes tight control, predictability and efficiency on the deploy, installation and configuration of software. \cite{Humble2010}
+\textit{Increasing Rate of Upgrades and Deploys.} The Agile and DevOps development lifecycles where software upgrades are deployed on a weekly or even a  daily basis, as opposed to the quarterly and yearly deploy cycles of more traditional software development methods, imposes tight control, predictability and efficiency on the deploy, installation and configuration of software \cite{Humble2010}.
+
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
 \end{center}
 
 %3. The third part offers the solution (again in bold), consequences of the pattern application --- which are part of the resulting context --- and a discussion of possible implementations.
 %Unknown4: GUI vs. Command line vs. Serializable Interface
-\textbf{Therefore: Provide an API for all required administration functionality. Make this API externally available, easily accessible and well documented, so that admins can automate administrative tasks and integrate it easily in the administration processes.}\\
+\textbf{Therefore: Provide an API for all required administration functionality. Make this API externally available, easily accessible---e.g. with a serializable or command line interface---and well documented, so that admins can automate administrative tasks and integrate it easily in the administration processes.}\\
 
 %\textit{Solution in more detail.}
 
@@ -54,10 +54,10 @@ efficiency was shown in 19$^{th}$ century and called "\textit{Jevons Paradox}" \
 %The system has to provide an API (application programming interface) that allows the system administrator to automate system administration tasks. Examples of such tasks are: a regular performance check, creation of a new user or a re-start in the case of problems, but also the signaling of a critical condition.  
 
 
-\textit{Solution description:}\\
-%Leo: Example
+\textit{Solution description:}\\ 
+%Leo: Example CK: Komt later bij de Known Uses
 Offering an administration API provides much more flexibility for the system administrators to administer the systems in the way they think fits best. It gives them enough freedom to integrate the administration in existing processes. In order to be able to offer this high degree of freedom regarding the usage of the API, the system developers have to carefully design it and to offer the administration functionality in appropriate abstraction levels. This means that the API should be fine-grained enough.
-%Unknown1: Contradicts the objectivbe of reuse!! (Abstraction)
+%Unknown1: Contradicts the objectivbe of reuse!! (Abstraction) CK: hmmm, wordt later nog geadresseerd, dus hier maar niets mee doen
 
 %Peter: explain earlier!
 The tasks of the system administrators are quite wide e.g.: installation, maintenance, scheduling repair, performance monitoring, backup \& recovery, defining and maintaining usage and security policies etc. For most of these tasks an API can increase the efficiency and quality of the administration processes. 
@@ -67,21 +67,24 @@ Automating administrative tasks reduces the number of errors that normally occur
 Tools for automation can make use of the administration functionality if they can connect to the provided API. For example, the right API helps to automate tasks that are part of a new employee account creation process. \cite{Limoncelli2011a}.
 
 % negative consequences
-To securely expose administrative features utilize a {\sc Proxy} \cite{Buschmann1996}. The {\sc Proxy} can include authentication and authorization mechanism and block all unauthorized access attempts, this will be discussed in more detail in the implementation description below.
+To securely expose administrative features utilize a {\sc Proxy} \cite{Buschmann1996}. The {\sc Proxy} can include an authentication and authorization mechanism and block all unauthorized access attempts. This will be discussed in more detail in the implementation description below.
 
 If the system evolves, the API is also likely to change which might require adaptations the system developers are not aware of. This is a general problem in interface- and component-based development and needs to be addressed in the design of the API too. 
 
 %Peter: or IDE Scram...bin? i.e. Apple interpreter
-Providing an API might require more elaborate documentation compared to a more intuitive and self-explaining administrative GUI. 
-%Unknown4: ?
-For example: an API might require the correct spelling
-%Unknown4: ? (t.a.v. het woord spelling)
-of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in a separate window section. %Rebecca: what does this mean? (Christian to clarify)
-This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with clear error messages. \\
+Providing an API might require more elaborate documentation compared to a more intuitive and self-explaining administrative GUI. The allocation of user roles using such API might e.g. require the correct spelling of the user role names. A misspelling of these names can lead to errors or have other unwanted effects. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in a separate window section. 
+This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with clear error messages.\\
+
+%CK: DONE
+%%Unknown4: ?
+%For example: an API might require the correct spelling
+%%Unknown4: ? (t.a.v. het woord spelling)
+%of user roles which need to be assigned to new users. A GUI can offer a selection list including all user roles and possibly an extra explanation of these roles in a separate window section. %Rebecca: what does this mean? (Christian to clarify)
+%This minimizes the need for extra documentation. The API should therefore include an extensive help, containing all information necessary for using the provided administration functionality. For the same reason the API should include a good exception handling in combination with clear error messages. \\
 
 %\textit{Implementation details, referring back to negative consequences}
 
-In the most simple cases the pattern is a specific variant of a {\sc Service Layer} \cite{Fowler:2002:PEA:579257}. In this case it does not contain any logic, but simply forwards all requests to already existing subsystems that offer the administration functionality. This is shown in Figure \ref{fig:provideAPIDiagram-01}.  
+In the most simple cases the pattern is a specific variant of a {\sc Service Layer} \cite{Fowler:2002:PEA:579257}. In this case it does not contain any logic, but simply forwards all requests to already existing configuration subsystems that offer the administration functionality. How these internal configuration subsystems are implemented is hidden to the user of the administration API. They can use this administration API using their own administration tools, e.g. a GUI or automated scripts. This is shown in Figure \ref{fig:provideAPIDiagram-01}.  
 
 \begin{figure}[h]
 \centering
@@ -89,17 +92,17 @@ In the most simple cases the pattern is a specific variant of a {\sc Service Lay
 \caption{Main solution structure of PROVIDE AN ADMINISTRATION API}
 \label{fig:provideAPIDiagram-01}
 \end{figure}
-% Unknown3: Configuration subsystem <-- GUI?
-% Unknown3: Administration tools <-- GUI? Automated Script?
-%Leo: W.r.t. 'Administration API': Why a component icon?
-%Leo: Why in old UML version?
-%Leo: Why not represent it as a lollypop? (See Documenting SA 2nd Ed. p.77)
+% Unknown3: Configuration subsystem <-- GUI? CK: DONE
+% Unknown3: Administration tools <-- GUI? Automated Script? CK: DONE
+%Leo: W.r.t. 'Administration API': Why a component icon? CK: DONE
+%Leo: Why in old UML version? CK: DONE
+%Leo: Why not represent it as a lollypop? (See Documenting SA 2nd Ed. p.77) CK: DONE
 
 If the administration API should not be publicly available due to security reasons, a {\sc Proxy} \cite{Buschmann1996} could be used to adequately address this issue. Figure \ref{fig:provideAPIDiagram-02} shows the main design. The protection proxy needs to include some mechanism for authentication and authorization of the requester.
 
 %Peter: ?
-These can be implemented making use of e.g. a pattern like {\sc Adapter} \cite{Gamma95} because this pattern can influence the visibility of the administration API with respect to authentication and authorization of the requester.
-%(TODO) @Christian: is dit wat je voor ogen hebt?.
+%These can be implemented making use of e.g. a pattern like {\sc Adapter} \cite{Gamma95} because this pattern can influence the visibility of the administration API with respect to authentication and authorization of the requester.
+%(TODO) @Christian: is dit wat je voor ogen hebt?. CK: Nee, daarom ook uitgecommentarieerd
 
 %Peter: security patterns! also (w.r.t. Protection Proxy)
 \begin{figure}[h]
@@ -111,7 +114,7 @@ These can be implemented making use of e.g. a pattern like {\sc Adapter} \cite{G
 
 %Peter: relevant
 In certain cases the implementation language of the system and that of the administration API are different. Main reason for this could be that the administration API is required to be provided in a specific scripting language that suits the administrators' tasks best. In that case the administration API subsystem also becomes a specific kind of an {\sc Adapter} \cite{Gamma95} between these two implementation languages.
-%Unknown1: missed a three-tiered architecture positioning to style ??
+%Unknown1: missed a three-tiered architecture positioning to style ?? CK: ??? niets mee gedaan...
 
 \begin{center}
 \ding{118} \ding{118} \ding{118} 
@@ -119,22 +122,23 @@ In certain cases the implementation language of the system and that of the admin
 
 \textit{Rationale:}\\
 %In the final part of each pattern, shown in \textit{italics}, we discuss related patterns and offer a rationale for the pattern based on literature.
-%Peter: separate pattern?
+%Peter: separate pattern? CK: No
 The problem of different platforms used for the system and in the administration environment can be minimized by making use of cross-platform scripting languages like Python, Ruby or TCL. This is also a certain advantage above graphical administration interfaces, as it removes the platform-specific issues caused by the GUI technologies. In combination with such a cross-platform scripting language this pattern shows its real strength as one can uniformly approach the administration API on any given platform.
 
-%Rebecca: I would like to see some concrete example. This is getting pretty abstract: (Christian)
+%Rebecca: I would like to see some concrete example. This is getting pretty abstract: (Christian) 
 %Peter: Examples - XML, Python(?), JSon. --> Single File Location
 Ideally, any changes in the system itself do not lead to changes in the administration API. However, if also functionality of the system regarding its configuration is changing, then also the API likely needs to be changed. The tools of the administrators are dependent on the API both syntactically and semantically in varying degrees. Unfortunately are both dependency types interrelated: the less syntactic the dependency is, the higher it is semantically and vice versa. One criterion that can be used for determining if the API should decrease the syntactic or the semantic dependencies is how easy it is to adapt the connection to the API on either syntactic and semantic level. If the interfaces are easy to adapt on both sides, then one should prefer more syntactically dependent interfaces that explicitly contain the semantic information in the naming of the methods and parameters. If the interfaces are not easy to adapt, then the syntactical dependencies should be low by using more generic interfaces that merely require different parameter contents but no interface adaptations.  
 
-%TODO: some stuff on documentation of the API.
 
 Known uses:\\
-\textit{Microsoft Sharepoint 2013 provides a rich set of APIs. Especially the server object model API offers all required functionality for administration tasks as ``backup, farm health and diagnostics, logging, farm and web application management, upgrade, deployment, caching, and Windows PowerShell customization."\footnote{see \url{http://msdn.microsoft.com/en-us/library/sharepoint/jj164060.aspx}}}
+\textit{Microsoft Sharepoint 2013 provides a rich set of APIs. Especially the server object model API offers all required functionality for administration tasks as ``backup, farm health and diagnostics, logging, farm and web application management, upgrade, deployment, caching, and Windows PowerShell customization." \cite{Microsoft2013}}
 
 \textit{Another known use of this pattern can be found in Software-Defined Networking. This networking architecture is designed to use standardized APIs for defining and reconfiguring the way data and resources are handled within a network and to make interfacing and reconfiguring the network and its components easier \cite{Kirkpatrick2013}.}
 
-\textit{One possibility of implementing this administrative API in the Java programming language are Java Management Extensions\footnote{\url{http://www.oracle.com/technetwork/java/javase/tech/javamanagement-140525.html}} (JMX). }
+\textit{One possibility of implementing this administrative API in the Java programming language are Java Management Extensions (JMX) \cite{Oracle2014}. }
 %Unknown1: Feedback?? How the patterns improve the architectural design quality regarding the administration point of view?
+
+\textit{Google also provides administration APIs for managing Google Apps, e.g. an API for monitoring the activities of account's administrators or for version conflict detection \cite{GoogleAppsPlatform2014}.}
 
 %
 %\begin{center}
