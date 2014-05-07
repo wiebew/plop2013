@@ -3,6 +3,7 @@
 \pdfpagewidth=8.5in
 \pdfpageheight=11in
 
+
 \usepackage{latexsym}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -13,6 +14,8 @@
 \usepackage{url}
 %\usepackage{minted}
 \usepackage{listings}
+
+
 
 \acmVolume{}
 \acmNumber{}
@@ -26,30 +29,13 @@
 \author{ROLAND BIJVANK \affil{HU University of Applied Sciences, Utrecht, the Netherlands}\ \\
 WIEBE WIERSEMA \affil{HU University of Applied Sciences, Utrecht, the Netherlands}\ \\
 CHRISTIAN K\"{O}PPE \affil{HAN University of Applied Sciences, Arnhem, the Netherlands}}
-%\author{ROLAND BIJVANK , WIEBE WIERSEMA and CHRISTIAN K\"{O}PPE \affil{HU University of Applied Sciences, Utrecht, the Netherlands\\ \{roland.bijvank,wiebe.wiersema,christian.koppe\}@hu.nl}}
 \parskip=0.3em
-
-%Peter Sommerlad: Yes Patterns(!)
-%No footnotes, but references!
-%Intended audience?
-%Need more work!
-%+Whitespace, diagrams, UML xRef
-%Names of Patterns Bold
-
-%Leo Pruijt:
-% + Very Interesting
-% + IMportant niche for SA & SE
-
-%Unknown3 (Mihaela Cardei?): Good, Simple.
-
-%Unknown4 (Brahim Mahid?).
 
 \begin{abstract}
 Many quality aspects of software systems are addressed in the existing literature on software architecture patterns. But the aspect of system administration seems to be a bit overlooked, even though it is an important aspect too.
-% Leo: Who says so?
+
 In this work we present three software architecture patterns that, when applied by software architects, support the work of system administrators: {\sc Provide an Administration API}, {\sc Single File Location}, and {\sc Centralized System Logging}. {\sc Provide an Administration API} should solve problems encountered when trying to automate administration tasks. The {\sc Single File Location} pattern should help system administrators to find the files of an application in one (hierarchical) place. {\sc Centralized System Logging} is useful to prevent coming up with several logging formats and locations.
 
-%Leo: Missing - Short intro of the (problem domain) of the 3 patterns
 \end{abstract}
 
 \category{D.2.11}{Software Engineering}{Software Architectures}[(Design) Patterns]
@@ -77,41 +63,9 @@ Permission to make digital or hard copies of all or part of this work for person
 \input{introduction}
 \input{patternformat}
 
-
-%\newpage
-%\section*{PATTERN TEMPLATE}
-%
-%Context.\\ 
-%
-%\begin{center}
-%\ding{118} \ding{118} \ding{118}
-%\end{center}
-%
-%\textbf{Problem.}\\
-%
-%Forces
-%
-%\begin{center}
-%\ding{118} \ding{118} \ding{118} 
-%\end{center}
-%
-%\textbf{Therefore: Solution.}\\
-%
-%Solution Description\\
-%
-%\begin{center}
-%\ding{118} \ding{118} \ding{118} 
-%\end{center}
-%
-%\textit{Rationale.}
-
-%\include{patterns/todo}
-
 \include{patterns/provideAPI}
 \include{patterns/singleFileLocation}
 \include{patterns/systemLogging}
-%\include{patterns/centralizedIdentityManagement}
-%\include{patterns/multiTenantApplication}
 
 \input{conclusion}
 
