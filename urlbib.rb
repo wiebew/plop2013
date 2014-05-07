@@ -1,3 +1,10 @@
+# this script adds the note field to the bib entries so it generates the Accessed + date on urls
+# To get this working:
+# install ruby
+# on commandline "gem install bibtex-ruby"
+# then for conversion, go to the plop2013 folder
+# ruby urlbib.rb 
+
 require 'bibtex'
 bib = BibTeX.open('./ArchitecturePatterns.bib')
 list = bib['@misc']
