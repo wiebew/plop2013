@@ -1134,8 +1134,8 @@ the#1\endcsname{\@thmcounter{#1}}\global
   \ifx\@lastauthor\@currauthor{#3}\else{#2 #3}\fi%
   \let\@lastauthor=\@currauthor}
 %
-\newlength{\bibhang}
-\setlength{\bibhang}{2em}
+%\newlength{\bibhang}
+%\setlength{\bibhang}{2em}
 }}
 \def\@biblabel#1{}
 \newdimen\bibindent
